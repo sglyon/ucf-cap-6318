@@ -154,6 +154,9 @@ G1 = Graph(A)
 # ╔═╡ d992b543-a500-4bb8-ad98-bc547e85c002
 collect(edges(G1))  # collect turns an `iterator` into an array
 
+# ╔═╡ dd13830c-3fe5-446c-8820-b899079a4eb6
+collect(vertices(G1))  # LightGraphs refers to nodes as `vertices`
+
 # ╔═╡ 19e7f48f-2a24-4377-b0e0-6245ae434eda
 gplot(G1)
 
@@ -500,6 +503,7 @@ uuid = "3f19e933-33d8-53b3-aaab-bd5110c3b7a0"
 # ╠═b4216de7-ac9f-4f20-a32c-bac12f03e8a6
 # ╠═4cb2d7cb-9b68-40f4-866a-5e13b0b9540d
 # ╠═d992b543-a500-4bb8-ad98-bc547e85c002
+# ╠═dd13830c-3fe5-446c-8820-b899079a4eb6
 # ╠═19e7f48f-2a24-4377-b0e0-6245ae434eda
 # ╠═6abb1533-dbb3-45e1-bbed-091e0be79e85
 # ╠═4486b5df-c810-4c11-bacc-480853b4ff98

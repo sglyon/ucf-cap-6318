@@ -1,0 +1,6 @@
+[submodule "website/themes/hyde"]
+	path = website/themes/hyde
+	url = https://github.com/spf13/hyde.git
+[submodule "website/themes/learn"]
+	path = website/themes/learn
+	url = https://github.com/matcornic/hugo-theme-learn.git
