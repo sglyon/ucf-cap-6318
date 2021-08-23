@@ -1,4 +1,6 @@
 .ipynb_checkpoints/
 *.html
 *.pdf
-pluto_state_cache
+pluto_export_cache
+public/
+website/content/notebooks
