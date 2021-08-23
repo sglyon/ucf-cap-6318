@@ -1,3 +1,4 @@
 .ipynb_checkpoints/
 *.html
 *.pdf
+pluto_state_cache
