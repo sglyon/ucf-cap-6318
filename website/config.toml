@@ -1,0 +1,16 @@
+baseURL = 'http://example.org/'
+languageCode = 'en-us'
+title = 'UCF CAP-6318'
+theme = 'learn'
+
+[params]
+  themeVariant = "ucf"
+  description = "Computational Analysis of Social Complexity"
+  author = "Spencer Lyon"
+  showVisitedLinks = false
+  disableBreadcrumb = true
+  disableNextPrev = true
+  disableLandingPageButton = true
+  disableMermaid = false
+  customMermaidURL = "https://unpkg.com/mermaid@8.8.0/dist/mermaid.min.js"
+  titleSeparator = "::"
