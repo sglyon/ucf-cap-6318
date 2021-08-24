@@ -3,3 +3,9 @@
 pluto_export_cache
 public/
 website/content/notebooks
+*.aux
+*.fdb_latexmk
+*.fls
+*.log
+*.out
+*.gz
