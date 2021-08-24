@@ -390,23 +390,66 @@ bfs_carn = bfs_tree(arpa, node_ints["CARN"])
 md"""
 - Notice that the printout says we have a graph with 13 nodes, 12 edges and it is a **directed** graph
 - Thus far, all graphs we have considered have been undirected
-- We have only been concerned about if a connection (edge) exists between nodes
+  - We have only been concerned about if a connection (edge) exists between nodes
 - A directed graph extends the notion of connecting nodes with a direction
-- We can now say that *things* flow across edges from one node to another -- always in the same direction
+  - We can now say that *things* flow across edges from one node to another -- always in the same direction
 - Why would the breadth-first search routine return a directed graph instead of the undirected type we started with?
+- Let's visualize it and see if we can understand why
 """
 
 # ╔═╡ f1634dc7-769e-48cc-abe6-753be4f1a126
 gplot(bfs_carn, nodelabel=first.(nodes))
 
 # ╔═╡ d48092ad-3d31-4dbb-9e45-aa1614eadb38
+md"""
+- Notice that arrows only flow *out* of `CARN`
+- They also always flow *away* from `CARN`
+- The use of directed edges allows LightGraphs to represent the shortest path from CARN to any other node
+  - For example `STAN`: `CARN -> HARV -> BBN -> RAND -> UCLA -> STAN`
+"""
 
+# ╔═╡ ced03dc8-853c-485e-bcd0-af5a1f882855
+md"""
+## Exercise: Explore DiGraph
 
-# ╔═╡ b1567b12-9d3d-4869-9b29-40e87f714b61
+- The `bfs_carn` object has type $(Markdown.Code(string(typeof(bfs_carn))))
+- Let's view the names of its properties (properties)
+"""
 
+# ╔═╡ 2e9038d7-bdb4-4fa3-b684-7fd3fb01a735
+propertynames(bfs_carn)
 
-# ╔═╡ 231d230d-051f-44bd-b7c8-575c802c3e77
+# ╔═╡ 82248896-f637-4fe8-b0d8-cd0612208028
+bfs_carn.fadjlist
 
+# ╔═╡ 958b11bc-b677-40e1-aa54-47f808e16a3b
+md"""
+- The `fadjlist` (forward adjacency list) property is a `Vector{Vector{Int64}}`
+- `fadjlist` has one element per node (call index into outer Vector `i` for node `i`)
+- Each element is itself a vector containing node indices for all nodes `j` for which there is an edge flowing from `i` to `j`
+-  Below we have set up a new **method** (see below) for the `breadth_first_distances` **function** that takes a `DiGraph` as an argument
+- Your task is to implement the the method so that it has the same return value as the previous method from above
+"""
+
+# ╔═╡ 03b06222-0ac7-4da7-ac6c-52b16861fd8f
+function breadth_first_distances(g::SimpleDiGraph, start::Int)
+	out = Vector{Int}[]
+	# use push!(out, new_nodes) to add to out
+	distance = 0
+	
+	# TODO: your code here...
+	
+	# return out
+	out
+end
+
+# ╔═╡ 2c4219b3-ffe7-40bf-91c2-e4d49b022ffa
+Markdown.MD(Markdown.Admonition("info", "Aside: methods", [md"""
+- Julia's core abstraction is called **multiple dispatch** 
+- Multiple dispatch means function behavior can be specialized based on types of all arguments
+- A [method](https://docs.julialang.org/en/v1/manual/methods/) is a specific instance of a function that is only callable with certain argument types
+- We'll learn more about them in the homework...
+"""]))
 
 # ╔═╡ 7aa47418-dcc0-4eb3-9992-584a630a3573
 md"""
@@ -483,18 +526,33 @@ default_checks(
 )
 
 # ╔═╡ 8d80ccab-83c4-414f-9042-1b79a40b9a58
-let 
-	val = breadth_first_distances(arpa, node_ints["HARV"])
-	want = [[9, 12], [7, 8, 11], [3, 6, 5, 10], [1, 2, 4]]
-	if length(val) == 0
-		still_missing(md"Make sure to `push!` on to `out` in your function")
-	elseif length(val) != maximum(gdistances(arpa, node_ints["HARV"]))
-		keep_working(md"`out` has incorrect number of elements")
-	elseif length.(val) != length.(want)
-		keep_working(md"Right number of elements, but not right number in each subvector")
-	elseif all(map(x12 -> all(sort(x12[1]) .== sort(x12[2])), zip(val, want)))
-			correct()
+begin
+	function test_bfd_methods(val, want)
+		if length(val) == 0
+			still_missing(md"Make sure to `push!` on to `out` in your function")
+		elseif length(val) != maximum(gdistances(arpa, node_ints["HARV"]))
+			keep_working(md"`out` has incorrect number of elements")
+		elseif length.(val) != length.(want)
+			keep_working(md"Right number of elements, but not right number in each subvector")
+		elseif all(map(x12 -> all(sort(x12[1]) .== sort(x12[2])), zip(val, want)))
+				correct()
+		end
 	end
+	let
+		val = breadth_first_distances(arpa, node_ints["HARV"])
+		want = [[9, 12], [7, 8, 11], [3, 6, 5, 10], [1, 2, 4]]
+		test_bfd_methods(val, want)
+	end
+end
+
+# ╔═╡ dacffea9-39be-42eb-aeeb-9dd334fb3278
+let
+	val = breadth_first_distances(
+		bfs_tree(arpa, node_ints["HARV"]), 
+		node_ints["HARV"]
+	)
+	want = [[9, 12], [7, 8, 11], [3, 6, 5, 10], [1, 2, 4]]
+	test_bfd_methods(val, want)
 end
 
 # ╔═╡ 00000000-0000-0000-0000-000000000001
@@ -835,13 +893,18 @@ uuid = "3f19e933-33d8-53b3-aaab-bd5110c3b7a0"
 # ╟─25a712e3-1cdf-43c3-9b99-3df9225690c8
 # ╠═aa590c0c-bad3-4eff-855e-2b05e5f3917b
 # ╟─8d80ccab-83c4-414f-9042-1b79a40b9a58
-# ╠═79c915de-26a4-4a54-876f-ecda9983fb65
+# ╟─79c915de-26a4-4a54-876f-ecda9983fb65
 # ╠═b6ccd634-df39-4b63-afee-e6cb3dd7f16b
-# ╠═90b2eee2-9f1e-4e6d-b942-da8b6b7da94e
+# ╟─90b2eee2-9f1e-4e6d-b942-da8b6b7da94e
 # ╠═f1634dc7-769e-48cc-abe6-753be4f1a126
-# ╠═d48092ad-3d31-4dbb-9e45-aa1614eadb38
-# ╠═b1567b12-9d3d-4869-9b29-40e87f714b61
-# ╠═231d230d-051f-44bd-b7c8-575c802c3e77
+# ╟─d48092ad-3d31-4dbb-9e45-aa1614eadb38
+# ╟─ced03dc8-853c-485e-bcd0-af5a1f882855
+# ╠═2e9038d7-bdb4-4fa3-b684-7fd3fb01a735
+# ╠═82248896-f637-4fe8-b0d8-cd0612208028
+# ╟─958b11bc-b677-40e1-aa54-47f808e16a3b
+# ╠═03b06222-0ac7-4da7-ac6c-52b16861fd8f
+# ╟─dacffea9-39be-42eb-aeeb-9dd334fb3278
+# ╟─2c4219b3-ffe7-40bf-91c2-e4d49b022ffa
 # ╟─7aa47418-dcc0-4eb3-9992-584a630a3573
 # ╟─c7d82edc-d486-4c53-8158-378f61ef8026
 # ╠═4ff5e61f-c221-476b-bb23-ea2943a914bc
