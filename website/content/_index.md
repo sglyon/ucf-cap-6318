@@ -21,7 +21,7 @@ With all that is going on in the world right now -- from COVID to Twitter and po
 - Where: ENG1 O227
 - Who:
   - Instructor: [Spencer Lyon](mailto:spencer.lyon@ucf.edu)
-  - Graduate Assistant: [Rayma Akula](mailto:ramya.akula@knights.ucf.edu)
+  - Graduate Assistant: [Ramya Akula](mailto:ramya.akula@knights.ucf.edu)
 - Syllabus: [https://github.com/sglyon/ucf-cap-6318/raw/Fall21/syllabus/fall2021.pdf](https://github.com/sglyon/ucf-cap-6318/raw/Fall21/syllabus/fall2021.pdf)
 - Core textbook: Networks, Crowds, and Markets by Easley and Klienberg (available for free [online](https://www.cs.cornell.edu/home/kleinber/networks-book/))
 - Useful links:
