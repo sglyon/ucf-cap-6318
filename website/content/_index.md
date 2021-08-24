@@ -37,6 +37,6 @@ All lecture materials and assignments will be delivered here, all due dates will
 
 At least one week in advance, we will post a new item in the sidebar of course titled "Week N". The landing page will show what topics will be covered and will also show readings that should be completed before attending class. For example, on August 24 we will post a "Week 2" page including notes and references for our second class, which will be held on August 31.
 
-Assignments are to be submitted on time via our Canvas course on [webcourses](https://webcourses.ucf.edu/courses/1392110)
+Assignments are to be submitted on time via [GitHub](https://github.com/) and [GitHub Classroom](https://classroom.github.com/classrooms)
 
 If you have questions, please consult the syllabus (link above) and ask questions on the canvas discussion page (also above)
