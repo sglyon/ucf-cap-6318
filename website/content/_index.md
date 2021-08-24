@@ -17,8 +17,8 @@ With all that is going on in the world right now -- from COVID to Twitter and po
 
 ### Course Info
 
-- When: Tuesdays from 6:00 to 8:50 PM
-- Where:
+- When: Tuesdays from 6:00 to 8:50 PM (August 24, 2021 through December 7, 2021)
+- Where: ENG1 O227
 - Who:
   - Instructor: [Spencer Lyon](mailto:spencer.lyon@ucf.edu)
   - Graduate Assistant: [Rayma Akula](mailto:ramya.akula@knights.ucf.edu)
