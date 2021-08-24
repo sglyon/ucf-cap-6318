@@ -400,14 +400,11 @@ md"""
 Plot(1:3, [1, 4, 9], Layout(width=800, height=450))
 
 # ╔═╡ 19c13105-05cb-42f5-bda5-f13717826e50
-p2 = Plot(
+Plot(
 	df1, 
 	x=:pop, y=:realgdp, color=:countrycode, 
 	mode="markers", Layout(height=400, xaxis_type="log")
 )
-
-# ╔═╡ 2cf9a5bc-d354-4ed4-8f6b-308ea6733128
-p2.layout.fields
 
 # ╔═╡ 728f4fbe-de06-44ff-a18b-d7bdd91657b2
 md"""
@@ -929,7 +926,6 @@ uuid = "3f19e933-33d8-53b3-aaab-bd5110c3b7a0"
 # ╠═09480927-e85a-4e5e-836e-22aa95a18723
 # ╠═6cb5d904-93b2-4831-ab92-887de0a51691
 # ╠═19c13105-05cb-42f5-bda5-f13717826e50
-# ╠═2cf9a5bc-d354-4ed4-8f6b-308ea6733128
 # ╟─728f4fbe-de06-44ff-a18b-d7bdd91657b2
 # ╟─cb6a44b4-d991-45df-aa44-538d4a314e13
 # ╟─00000000-0000-0000-0000-000000000001

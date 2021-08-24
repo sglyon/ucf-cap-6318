@@ -123,6 +123,7 @@ md"""
   - How many edges?
   - Node with most edges (hint, use the `dims` argument to `sum` and then the `argmax` function)
   - Average number of edges per node
+  - Number of connections for node 7: $\sum_j A_{j7}$1
 """
 
 # ╔═╡ 7e6382d0-3e6b-4d30-8ed8-78ea3dd8a654
@@ -137,7 +138,19 @@ end
 
 
 # ╔═╡ 148e7b00-d3c9-4da8-bcc6-15f39c248479
-# your work here!
+ex1_total_nodes = missing
+
+# ╔═╡ 9ddc9e27-0edb-479b-9f62-12fc351e6b73
+ex1_total_edges = missing
+
+# ╔═╡ 0411e427-7394-45d7-9928-e33e0eda4dc2
+ex1_node_most_edges = missing
+
+# ╔═╡ a17cd0f8-ea5c-4d2c-9158-d0a1dba2a4c1
+ex1_average_edges_per_node = missing
+
+# ╔═╡ 423220e3-9d30-43ad-a341-860d0073cf96
+ex1_connections_node_7 = missing
 
 # ╔═╡ 907f475c-4726-4fd1-8e85-339decb296c5
 md"""
@@ -157,14 +170,15 @@ collect(edges(G1))  # collect turns an `iterator` into an array
 # ╔═╡ dd13830c-3fe5-446c-8820-b899079a4eb6
 collect(vertices(G1))  # LightGraphs refers to nodes as `vertices`
 
+# ╔═╡ b0c74ea5-cee6-41c0-80c3-d7a1a7e5f297
+md"""
+- We can use the GraphPlot package to visualize our graph
+- Note that the actual placement of the nodes is randomly generated and then tweaked to clearly show all nodes and edges
+- The important thing is *not* the placement of nodes, but rather their *relative structure*
+"""
+
 # ╔═╡ 19e7f48f-2a24-4377-b0e0-6245ae434eda
 gplot(G1)
-
-# ╔═╡ 6abb1533-dbb3-45e1-bbed-091e0be79e85
-
-
-# ╔═╡ 4486b5df-c810-4c11-bacc-480853b4ff98
-
 
 # ╔═╡ 07b738a3-5404-46e0-80fb-bda35ee391da
 md"""
@@ -191,8 +205,175 @@ A2 = [[2], [1, 3, 4], [2, 4], [2, 3]]
 
 # ╔═╡ c315dc6d-1198-4063-bc99-eb0f6a654140
 md"""
-- This would be a much more space efficient way to store a graph
+- It so happens that this is how LightGraphs.jl stores simple `Graph`s:
 """
+
+# ╔═╡ b96911c1-1da8-4d71-a91a-68d332b03851
+G1.fadjlist
+
+# ╔═╡ bb0601da-3021-4d34-b76d-97b77784f71c
+md"""
+# Graph Theory Concepts
+
+- Let's explore some concepts often used in analysis of graphs
+
+"""
+
+# ╔═╡ 3c2ab1f9-2676-4602-8881-e47b5b810d53
+md"""
+## Paths
+
+- When studying graphs it is often natural to ask about how things travel or flow across the graph
+- For example, how information spreads amongst a group of friends, how data travels the internet, how diseases are transmitted from one person to another, and how people navigate a metro subway system
+- In each of these cases, the flow of things goes from node to node across edges
+- A flow from one any node to another node is called a **path**
+"""
+
+# ╔═╡ 276df81c-5c5b-4fce-98a3-4af339f70520
+md"""
+## Arpanet Example
+
+- Consider the following Graph of the first iteration of the internet
+"""
+
+# ╔═╡ 71c7f0eb-1cc1-4fc2-9adb-eb8d46056f08
+PlutoUI.LocalResource("./arpanet_map.png")
+
+# ╔═╡ 81e6a272-393f-4c54-b3df-cb23ba043c64
+md"""
+- There are many possible paths through this network
+- Consider a path from UCSB to MIT: `UCSB-UCLA-RAND-BBN-MIT`
+- Another possible path from UCSB to MIT is `UCSB-SRI-UTAH-MIT`
+"""
+
+# ╔═╡ d513bac7-3037-464d-8495-c3e6483f62fd
+md"""
+## LightGraphs Arpanet
+
+- Let's define the Arpanet using LightGraphs as it will be helpful throughout this lecture
+"""
+
+# ╔═╡ 92a0e544-f62b-409b-b104-43b1e92bc88d
+begin
+	nodes = [
+		"UCSB" => ["SRI", "UCLA"],
+		"SRI" => ["UCSB", "UCLA", "STAN", "UTAH"],
+		"UCLA" => ["SRI", "UCSB", "STAN", "RAND"],
+		"STAN" => ["SRI", "UCLA"],
+		"UTAH" => ["SRI", "SDC", "MIT"],
+		"SDC" => ["UTAH", "RAND"],
+		"RAND" => ["UCLA", "SDC", "BBN"],
+		"MIT" => ["UTAH", "BBN", "LINC"],
+		"BBN" => ["MIT", "RAND", "HARV"],
+		"LINC" => ["MIT", "CASE"],
+		"CASE" => ["LINC", "CARN"],
+		"CARN" => ["CASE", "HARV"],
+		"HARV" => ["CARN", "BBN"]
+	]
+	node_ints = Dict(zip(first.(nodes), 1:length(nodes)))
+	arpa = SimpleGraph(length(nodes))
+	for (node, edges) in nodes
+		for e in edges
+			add_edge!(arpa, node_ints[node], node_ints[e])
+		end
+	end
+	
+	# save graph for loading in future
+	savegraph("arpanet.lg", arpa)
+	
+	nothing  # don't print anything
+end
+		
+
+# ╔═╡ 81067778-4c59-4cda-9f88-a4d0c6568efc
+arpa
+
+# ╔═╡ 04e60bc7-0484-4a83-a51d-32126a9c9a2e
+gplot(arpa, nodelabel=first.(nodes))
+
+# ╔═╡ efb6af66-daa4-4266-a603-15075abefe2f
+md"""
+## Cycles
+
+- An important concept when analyzing graphs is the concept of a cycle
+- A cycle is a path that starts and ends at the same node
+- For the ARPA net, an example cycle is `LINC-CASE-CARN-HARV-BBN-MIT-LINC`
+- Question... what is the shortest possible cycle in a graph (including all endpoints)?
+- LightGraphs can tell us if a graph is connected
+"""
+
+# ╔═╡ fb2f5514-fa20-461c-a929-6135dd156b4d
+is_connected(arpa)
+
+# ╔═╡ b8c62e6d-8bd0-46fd-b1c1-30fab76384b3
+md"""
+- It is natural to believe that many real-world networks are connected
+  - Transportation: you can get to any station
+  - Internet: you can visit any website
+- But it is entirely possible to have a non-connected graph
+  - Social networks (nodes: people, edges: friendships) of college students who different countries
+  - Suppliers for a textile company vs a microchip manufacturer
+"""
+
+# ╔═╡ ad9a3028-09ee-4273-9690-ca382526b1e5
+md"""
+## Distance
+
+- We can extend concept of paths between nodes, to include a notion of distance
+- The **length** of a path is the number of steps it takes from beginning to end
+  - `MIT-BBN-RAND-UCLA` has length 3 (starting from `MIT` take three steps before ending at `UCLA`)
+- The **distance** between two nodes, is the length of the *shortest* path between those nodes
+- LightGraphs can compute distances using the `gdistances` function
+- Below we compute the distance between `UCLA` and all nodes
+"""
+
+# ╔═╡ 3dd8da79-eb61-4358-b10a-e6bb49df7718
+Dict(zip(first.(nodes), gdistances(arpa, node_ints["UCLA"])))
+
+# ╔═╡ 66d06717-da0d-48ec-9965-282d6697049b
+md"""
+## Breadth-First Search
+
+- If asked, how would you go about computing the distance between the `HARV` node and all other nodes?
+- One iterative approach might be:
+  - Start with `HARV`: note it is distance zero to `HARV`
+  - Move on to all nodes directly connected to `HARV`: these are distance 1
+  - Then move to all nodes connected to nodes that are distance 1 from `HARV` (excluding any you may have already found): declare these to be at distance 2 from `HARV`
+  - Continue traversing edges until you have visited all nodes
+- This algorihtm is called **breadth-first search**
+"""
+
+# ╔═╡ b78cc969-fc51-4b55-944e-85fd7b75ec5b
+md"""
+## Example: Breadth-First Search from MIT
+
+- The image below shows how breadth-first search would proceed for the MIT node
+"""
+
+# ╔═╡ ac46aefb-24b3-422c-afa3-d26c5f545c60
+PlutoUI.LocalResource("./mit_breadth_first.png")
+
+# ╔═╡ 25a712e3-1cdf-43c3-9b99-3df9225690c8
+md"""
+## Exercise (difficult!): BFS
+
+- Now it is time for you to try this out!
+- Our goal is to use breadth-first search to compute the distance betwen a given node and all other nodes
+- The return value you end up with should be an `Vector{Vector{Int}}`, where element `i` of this vector contains all node labels at distance `i` from the starting node
+- Fill in the logic for the `breadth_first_distances` function below
+"""
+
+# ╔═╡ aa590c0c-bad3-4eff-855e-2b05e5f3917b
+function breadth_first_distances(g, start::Int)
+	out = Vector{Int}[]
+	# use push!(out, new_nodes) to add to out
+	distance = 0
+	
+	# TODO: your code here...
+	
+	# return out
+	out
+end
 
 # ╔═╡ 7aa47418-dcc0-4eb3-9992-584a630a3573
 md"""
@@ -201,6 +382,87 @@ md"""
 
 # ╔═╡ c7d82edc-d486-4c53-8158-378f61ef8026
 html"""<button onClick="present()">present</button>"""
+
+# ╔═╡ a783eb00-fd8c-4e6a-bf89-adc2a0dd38d7
+begin
+	hint(text) = Markdown.MD(Markdown.Admonition("hint", "Hint", [text]))
+	
+	almost(text) = Markdown.MD(Markdown.Admonition("warning", "Almost there!", [text]))
+	
+	still_missing(text=md"Replace `missing` with your answer.") = Markdown.MD(Markdown.Admonition("warning", "Here we go!", [text]))
+	
+	keep_working(text=md"The answer is not quite right.") = Markdown.MD(Markdown.Admonition("danger", "Keep working on it!", [text]))
+	
+	yays = [md"Fantastic!", md"Splendid!", md"Great!", md"Yay ❤", md"Great! 🎉", md"Well done!", md"Keep it up!", md"Good job!", md"Awesome!", md"You got the right answer!", md"Let's move on to the next section."]
+	
+	correct(text=rand(yays)) = Markdown.MD(Markdown.Admonition("correct", "Got it!", [text]))
+	
+	not_defined(variable_name) = Markdown.MD(Markdown.Admonition("danger", "Oopsie!", [md"Make sure that you define a variable called **$(Markdown.Code(string(variable_name)))**"]))
+	
+	check_number(have::Int, want::Int) = have == want
+	check_number(have::T, want::T) where T <: AbstractFloat = abs(want - have) < 1e-10
+	
+	function default_checks(vname, have, want)
+		if ismissing(have)
+			still_missing(Markdown.MD(Markdown.Paragraph([
+				"Make sure to compute a value for ",
+				Markdown.Code(vname)
+			])))
+		elseif typeof(have) != typeof(want)
+			keep_working(Markdown.MD(Markdown.Paragraph([
+				Markdown.Code(vname), 
+				"should be a $(typeof(want)), found $(typeof(have))"
+			])))
+		else
+			if !check_number(have, want)
+				keep_working(Markdown.MD(Markdown.Paragraph([
+				Markdown.Code(vname), 
+				"is not quite right"
+			])))
+			else
+				correct()
+			end
+		end
+	end
+end
+
+# ╔═╡ 70bdad27-b787-4547-9095-d7856909ed64
+default_checks("ex1_total_nodes", ex1_total_nodes, size(A_ex1, 1))
+
+# ╔═╡ a835a290-3557-4732-8c57-1a19de52067f
+default_checks("ex1_total_edges", ex1_total_edges, sum(A_ex1))
+
+# ╔═╡ f0128aba-fbb9-4ef7-b1fa-f9b475a47f87
+default_checks("ex1_node_most_edges", ex1_node_most_edges, argmax(sum(A_ex1, dims=1)))
+
+# ╔═╡ f6555dd0-2299-4be4-8a79-8bbc39b00f98
+default_checks(
+	"ex1_average_edges_per_node", 
+	ex1_average_edges_per_node, 
+	sum(A_ex1) / size(A_ex1, 1)
+)
+
+# ╔═╡ 14c248d0-2030-4682-a7e2-d8aa177ba366
+default_checks(
+	"ex1_connections_node_7", 
+	ex1_connections_node_7, 
+	sum(A_ex1[7, :])
+)
+
+# ╔═╡ 8d80ccab-83c4-414f-9042-1b79a40b9a58
+let 
+	val = breadth_first_distances(arpa, node_ints["HARV"])
+	want = [[9, 12], [7, 8, 11], [3, 6, 5, 10], [1, 2, 4]]
+	if length(val) == 0
+		still_missing(md"Make sure to `push!` on to `out` in your function")
+	elseif length(val) != maximum(gdistances(arpa, node_ints["HARV"]))
+		keep_working(md"`out` has incorrect number of elements")
+	elseif length.(val) != length.(want)
+		keep_working(md"Right number of elements, but not right number in each subvector")
+	elseif all(map(x12 -> all(sort(x12[1]) .== sort(x12[2])), zip(val, want)))
+			correct()
+	end
+end
 
 # ╔═╡ 00000000-0000-0000-0000-000000000001
 PLUTO_PROJECT_TOML_CONTENTS = """
@@ -499,20 +761,50 @@ uuid = "3f19e933-33d8-53b3-aaab-bd5110c3b7a0"
 # ╟─4a461113-9542-46f0-9409-3a6f98078e29
 # ╠═7e6382d0-3e6b-4d30-8ed8-78ea3dd8a654
 # ╠═148e7b00-d3c9-4da8-bcc6-15f39c248479
-# ╠═907f475c-4726-4fd1-8e85-339decb296c5
+# ╟─70bdad27-b787-4547-9095-d7856909ed64
+# ╠═9ddc9e27-0edb-479b-9f62-12fc351e6b73
+# ╟─a835a290-3557-4732-8c57-1a19de52067f
+# ╠═0411e427-7394-45d7-9928-e33e0eda4dc2
+# ╟─f0128aba-fbb9-4ef7-b1fa-f9b475a47f87
+# ╟─a17cd0f8-ea5c-4d2c-9158-d0a1dba2a4c1
+# ╟─f6555dd0-2299-4be4-8a79-8bbc39b00f98
+# ╠═423220e3-9d30-43ad-a341-860d0073cf96
+# ╟─14c248d0-2030-4682-a7e2-d8aa177ba366
+# ╟─907f475c-4726-4fd1-8e85-339decb296c5
 # ╠═b4216de7-ac9f-4f20-a32c-bac12f03e8a6
 # ╠═4cb2d7cb-9b68-40f4-866a-5e13b0b9540d
 # ╠═d992b543-a500-4bb8-ad98-bc547e85c002
 # ╠═dd13830c-3fe5-446c-8820-b899079a4eb6
+# ╟─b0c74ea5-cee6-41c0-80c3-d7a1a7e5f297
 # ╠═19e7f48f-2a24-4377-b0e0-6245ae434eda
-# ╠═6abb1533-dbb3-45e1-bbed-091e0be79e85
-# ╠═4486b5df-c810-4c11-bacc-480853b4ff98
-# ╠═07b738a3-5404-46e0-80fb-bda35ee391da
-# ╠═3b4ac8b1-2d44-4dd5-8bf4-140b1e0d17d7
+# ╟─07b738a3-5404-46e0-80fb-bda35ee391da
+# ╟─3b4ac8b1-2d44-4dd5-8bf4-140b1e0d17d7
 # ╠═726c860a-275e-44a9-b248-5f53f5dbe493
-# ╠═c315dc6d-1198-4063-bc99-eb0f6a654140
+# ╟─c315dc6d-1198-4063-bc99-eb0f6a654140
+# ╠═b96911c1-1da8-4d71-a91a-68d332b03851
+# ╟─bb0601da-3021-4d34-b76d-97b77784f71c
+# ╟─3c2ab1f9-2676-4602-8881-e47b5b810d53
+# ╟─276df81c-5c5b-4fce-98a3-4af339f70520
+# ╟─71c7f0eb-1cc1-4fc2-9adb-eb8d46056f08
+# ╟─81e6a272-393f-4c54-b3df-cb23ba043c64
+# ╟─d513bac7-3037-464d-8495-c3e6483f62fd
+# ╠═92a0e544-f62b-409b-b104-43b1e92bc88d
+# ╠═81067778-4c59-4cda-9f88-a4d0c6568efc
+# ╠═04e60bc7-0484-4a83-a51d-32126a9c9a2e
+# ╟─efb6af66-daa4-4266-a603-15075abefe2f
+# ╠═fb2f5514-fa20-461c-a929-6135dd156b4d
+# ╟─b8c62e6d-8bd0-46fd-b1c1-30fab76384b3
+# ╟─ad9a3028-09ee-4273-9690-ca382526b1e5
+# ╠═3dd8da79-eb61-4358-b10a-e6bb49df7718
+# ╟─66d06717-da0d-48ec-9965-282d6697049b
+# ╟─b78cc969-fc51-4b55-944e-85fd7b75ec5b
+# ╠═ac46aefb-24b3-422c-afa3-d26c5f545c60
+# ╟─25a712e3-1cdf-43c3-9b99-3df9225690c8
+# ╠═aa590c0c-bad3-4eff-855e-2b05e5f3917b
+# ╟─8d80ccab-83c4-414f-9042-1b79a40b9a58
 # ╟─7aa47418-dcc0-4eb3-9992-584a630a3573
 # ╟─c7d82edc-d486-4c53-8158-378f61ef8026
 # ╠═4ff5e61f-c221-476b-bb23-ea2943a914bc
+# ╟─a783eb00-fd8c-4e6a-bf89-adc2a0dd38d7
 # ╟─00000000-0000-0000-0000-000000000001
 # ╟─00000000-0000-0000-0000-000000000002

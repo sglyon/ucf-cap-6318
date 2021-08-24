@@ -44,7 +44,11 @@
     {{ partial "menu.html" . }}
         <section id="body">
         <div id="overlay"></div>
-        <div>
+        {{if (eq .Kind "home")}}
+        <div class="padding">
+          {{else}}
+          <div>
+          {{end}}
 
         <div id="head-tags">
         {{ partial "tags.html" . }}

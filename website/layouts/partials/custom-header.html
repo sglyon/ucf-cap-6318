@@ -1,0 +1,25 @@
+{{ if (not (eq .Kind "home")) }}
+<style>
+  .content {
+    max-width: 100%;
+    margin-right: 0px;
+    padding: 0px;
+    overflow-y: hidden;
+    height: 100vh;
+  }
+  .page-foot {
+    display: none;
+  }
+  .plutopage {
+    height: 100vh;
+  }
+  .smallscreenlink {
+    display: none;
+  }
+  @media (max-width: 768px) {
+    .content {
+      padding: 0px;
+    }
+  }
+</style>
+{{ end }}

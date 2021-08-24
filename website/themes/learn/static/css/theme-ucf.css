@@ -26,6 +26,12 @@
   --MENU-SECTION-HR-color: #2b2020; /* Color of <hr> separator in menu */
 }
 
+a#logo > span {
+  color: #000000 !important;
+  font-weight: 700 !important;
+  font-size: 1.5rem !important;
+}
+
 body {
   color: var(--MAIN-TEXT-color) !important;
 }
