@@ -1,8 +1,8 @@
 :root {
   --MAIN-TEXT-color: #323232; /* Color of text by default */
   --MAIN-TITLES-TEXT-color: #5e5e5e; /* Color of titles h2-h3-h4-h5 */
-  --MAIN-LINK-color: #ffc904; /* Color of links */
-  --MAIN-LINK-HOVER-color: #d0a300; /* Color of hovered links */
+  --MAIN-LINK-color: #d0a300; /* Color of links */
+  --MAIN-LINK-HOVER-color: #b78f00; /* Color of hovered links */
   --MAIN-ANCHOR-color: #ffc904; /* color of anchors on titles */
 
   --MENU-HOME-LINK-color: #000000; /* Color of the home button text */
