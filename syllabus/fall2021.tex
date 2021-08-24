@@ -1,0 +1,364 @@
+\documentclass[11pt]{article}
+
+\input{./preamble.tex}
+
+% document starts here
+\begin{document}
+\parskip=\bigskipamount
+\parindent=0.0in
+\thispagestyle{empty}
+\input{./header.tex}
+
+\bigskip\bigskip
+\centerline{\Large \bf Computational Analysis of Social Complexity:  Syllabus}
+\centerline{Revised: \today}
+
+\textbf{Key Info}
+
+\begin{itemize}[label={}]
+    \setlength\itemsep{0.2em}
+    \item Course Number:  CAP-3618
+    \item Credit Hours: 3
+    \item Email: spencer.lyon@ucf.edu
+    \item Office hours: by appointment
+    \item Graduate Assistant (GA): Rayma Akula
+    \item GA email: ramya.akula@knights.ucf.edu
+\end{itemize}
+
+\textbf{Course Description}
+\begin{quote}
+    Computational concepts, principles, modeling and simulation approaches used
+    to analyze complex social and economic phenomena, leveraging the
+    availability of large amounts of data, and elements of complexity theory.
+\end{quote}
+
+
+\section*{Overview}
+
+CAP-3618 is a hands-on survey of a variety of topics in the fascinating field of
+computational social science. You will learn the theory behind modern network
+analysis, social network modeling, natural language processing, and even
+blockchains/smart-contracts/cryptocurrencies.  Applications include some or all
+of: disease spread through geographic networks, information dissemenation
+through social networks, degree of decentralization of various blockchains, and
+more.
+
+To implement our analysis we will use the exciting
+\href{https://julialang.org}{Julia programming language}. Julia is a relatively
+new programming language (first public release 2012, v1.0 in 2018) targeted
+specifically at numerical computing. Julia combines Python-level friendly syntax
+with C-level execution speeds. Julia is a particularly good tool for the types
+of computations done in the social sciences: iterating over edges in a graph,
+simulating agent based models, etc. Prior programming experience is not
+required, but it will definitly help!
+
+\section*{Learning Outcomes}
+
+Key learning outcomes for this course are
+
+\begin{enumerate}
+    \item Develop proficiency with the Julia programming language for data
+    analysis and computational tasks
+    \item An understanding of the connections between graph theory, economics,
+    game theory and computation
+    \item Implementation of computational techniques to analyze social media and
+    blockchain data
+\end{enumerate}
+
+
+\section*{Requirements}
+
+Our one requirement is that {\bf you must bring a laptop computer to class\/}.
+It should be your own computer, or at least one you can install new programs on.
+We will use it constantly in class, writing and correcting short programs.
+
+\section*{Getting help}
+
+This course has a strong {\bf support system\/} to help you when you run into
+problems --- and anyone who codes runs into problems. When (not if) you get
+stuck, we encourage you to reach out to the teacher, graduate assistant, the
+internet at large, and especially your classmates. We encourage you to post
+questions to the \href{https://webcourses.ucf.edu/courses/1392110}{Canvas page}
+on \href{https://webcourses.ucf.edu}{WebCourses}
+
+The bottom line:  {\bf If you're stuck, ask for help\/}.
+Really.  Don't be a hero, ask for help.
+
+\section*{Course website and discussion groups}
+
+Eveything you need, including this document, is posted on
+the {\bf course website\/}:
+%
+\vspace{-0.15in}
+\begin{center}
+\url{https://sglyon.github.io/ucf-cap-3618/}
+\end{center}
+\vspace{-0.15in}
+%
+The {\bf book\/} we will use is Networks, Crowds, and Markets by Easley and Klienberg and has its own site,
+%
+\vspace{-0.15in}
+\begin{center}
+\url{https://www.cs.cornell.edu/home/kleinber/networks-book/}
+\end{center}
+\vspace{-0.15in}
+%
+The full text is available for free online. There's a link to it on the course site.
+
+
+We will use Canvas' discussions feature for posting and responding to questions
+during this course. Don't be a stranger
+%
+\vspace{-0.1in}
+\begin{center}
+\url{https://webcourses.ucf.edu/courses/1392110/discussion_topics}
+\end{center}
+\vspace{-0.1in}
+%
+\section*{Deliverables and grades}
+
+This course divides into three main parts.
+
+First comes the theory. In the first part of the course we will study the core
+concepts from graph theory, game theory, auctions, simulation, and computation.
+In this section we will also sharpen our skills on the Julia programming
+language.
+
+The second section of the course will feature computations and analyses of
+social networks and social media. We will make use of data from twitter and
+apply our programming and modeling skills.
+
+The final section of the course will be centered on a new type of financial
+network: the blockchain. We'll discuss the key technologies that make the
+blockchain possible as well as what makes it special. We'll explore how smart
+contracts allow developers to codify financial relationships and bridge the gap
+between fields like game theory, mechanism design, economics, and finance. We'll
+do novel data analysis in this very data-rich, yet nascent field.
+
+Graded work includes:
+%
+\begin{itemize}
+
+\item {\bf Homework.\/} Throughout the course we will either 5 or 6 homework
+assignments. Homeworks are your opportunity to put the theories and hard skills
+into practice and make them your own. It is in your professional (and academic)
+best interest to commit to working hard on the homework assignments. You are
+encouraged to work in small groups on homework assignments, though each student
+will be required to submit their own work.
+
+\item {\bf Exam.\/}
+There will be one in-class exam during this semester. The exam will feature
+both programming and short answer style questions. You are to work independently on the exam. During the examination period you are free to consult any \textit{existing} online resources. The only
+exception is that you are not permitted to post the exam quesion (or something
+reasonably close to it) online to solicit help.
+
+\item {\bf Project.\/}
+The main purpose of this class is to prepare students to be able to formulate
+and execute computational analysis of social science questions. To that end, the
+major deliverable for the semester is a project where you get the chance to
+showcase what you've learned by studying a problem of your choosing. We strongly
+encourage you to work on the project with a classmate and will permit groups of
+at most 3 individuals. The output of the project is a {\bf professional piece of
+data collection and analysis\/} that you would be proupd to share with potential
+employers. The structure of the project is laid out in a separate document that
+will published on the class website (see a theme?!)
+
+\end{itemize}
+
+
+{\bf Due dates} will be posted on the course website.
+Assignments, whether code practice or components of the project,
+are due at the start of class on the specified dates.
+{\bf Dates are not negotiable.
+Anything handed in late will get a grade of zero.\/}
+
+{\bf All your work should be clean and professional.}  Your grade depends on it.
+
+
+{\bf Final grades\/} will be computed from
+\begin{center}
+\begin{tabular}{ll}
+Homework (best 5) & 30\% \\
+Exam        & 30\% \\
+Project     & 40\% \\
+\end{tabular}
+\end{center}
+Final grades are not subject to any fixed distribution.
+The number of A grades, for example,
+will depend only on your performance in the course.
+If you make a good-faith effort,
+we expect it to be hard to get less than a B.
+We are the sole judges of what constitutes good-faith effort.
+
+
+\section*{Recommended work habits}
+
+Computation and programming is not something you can learn from reading a book
+and attending lectures. You need to {\bf write programs\/} --- the more the
+better --- to understand how they work. Think about how you'd learn to play
+basketball or soccer; reading and listening to lectures aren't enough, you need
+to do it. We'll do a lot of programming in class, but it's {essential\/} that
+you follow up outside of class. Here's how.
+
+
+{\bf Write \& Review.\/}
+After each topic, we recommend you:
+% write everything you remember without looking
+%at your notes or the book.  Note any gaps in your knowledge.
+%Then read the book, work through the exercises, and fill in the gaps.
+%Ask
+%
+%\begin{comment}
+\begin{itemize}
+\item {\it Write:\/}  Shortly after class, write down everything you remember
+without looking at your notes or the book.
+Note things you don't understand --- gaps, we call them.
+\item {\it Review:\/} Read the relevant section of the book and lecture notes.
+Fill in the gaps. Ask for help with anything you still don't understand.
+%\item {\bf Review:\/} Later on, go through what you wrote down earlier and  fill in the gaps
+%by using the book.
+\end{itemize}
+%\end{comment}
+%
+
+{\bf Practice.\/} Some homework assignments may afford you the flexibility of
+choosing a subset of questions to complete for evaluation. This is our way of
+acknowledging that you have many commitments outside this class. We still
+suggest that you attempt all questions -- we view them as learning
+opportunities.
+
+We also recommend you {\bf practice coding\/} whenever you have the chance.
+Start small. Write short programs to do anything that crosses your mind. Use
+Julia to do things you would ordinarily do in another tool like Python or Excel.
+If permissable, try doing assignments from other courses in Julia. At first this
+will be more work than doing it by hand or in your current preferred tool, but
+once you have some experience it is our experience that things ar typically be
+easier in Julia. Even if that's not the case, the practice will expand your
+skill set.
+
+
+\section*{Pacing}
+
+
+The course is designed to be cover material at whatever pace the class is capable of.
+The topics should take roughly a week each, but we can scale that up or down as needed.
+If you're an expert, don't worry, we'll cover a lot of material either way.
+
+
+
+\section*{Policies}
+
+\subsection*{Academic Integrity}
+
+Students should familiarize themselves with UCF’s Rules of Conduct at \url{https://scai.sdes.ucf.edu/student-rules-of-conduct/}. According to Section 1, “Academic Misconduct,” students are prohibited from engaging in
+
+\begin{enumerate}
+    \item Unauthorized assistance: Using or attempting to use unauthorized materials, information or study aids in any academic exercise unless specifically authorized by the instructor of record. The unauthorized possession of examination or course-related material also constitutes cheating.
+    \item Communication to another through written, visual, electronic, or oral means: The presentation of material which has not been studied or learned, but rather was obtained through someone else’s efforts and used as part of an examination, course assignment, or project.
+    \item Commercial Use of Academic Material: Selling of course material to another person, student, and/or uploading course material to a third-party vendor without authorization or without the express written permission of the university and the instructor. Course materials include but are not limited to class notes, Instructor’s PowerPoints, course syllabi, tests, quizzes, labs, instruction sheets, homework, study guides, handouts, etc.
+    \item Falsifying or misrepresenting the student’s own academic work.
+    \item Plagiarism: Using or appropriating another’s work without any indication of the source, thereby attempting to convey the impression that such work is the student’s own.
+    \item Multiple Submissions: Submitting the same academic work for credit more than once without the express written permission of the instructor.
+    \item Helping another violate academic behavior standards.
+    \item Soliciting assistance with academic coursework and/or degree requirements.
+\end{enumerate}
+
+\textbf{Responses to Academic Dishonesty, Plagiarism, or Cheating}
+Students should also familiarize themselves with the procedures for academic misconduct in UCF’s student handbook, The Golden Rule <https://goldenrule.sdes.ucf.edu/>. UCF faculty members have a responsibility for students’ education and the value of a UCF degree, and so seek to prevent unethical behavior and respond to academic misconduct when necessary. Penalties for violating rules, policies, and instructions within this course can range from a zero on the exercise to an “F” letter grade in the course. In addition, an Academic Misconduct report could be filed with the Office of Student Conduct, which could lead to disciplinary warning, disciplinary probation, or deferred suspension or separation from the University through suspension, dismissal, or expulsion with the addition of a “Z” designation on one’s transcript.
+
+Being found in violation of academic conduct standards could result in a student having to disclose such behavior on a graduate school application, being removed from a leadership position within a student organization, the recipient of scholarships, participation in University activities such as study abroad, internships, etc.
+
+Let’s avoid all of this by demonstrating values of honesty, trust, and integrity. No grade is worth compromising your integrity and moving your moral compass. Stay true to doing the right thing: take the zero, not a shortcut.
+
+\subsection*{Course Accessibility Statement}
+
+The University of Central Florida is committed to providing access and inclusion for all persons with disabilities. Students with disabilities who need access to course content due to course design limitations should contact the professor as soon as possible. Students should also connect with Student Accessibility Services (SAS) <http://sas.sdes.ucf.edu/> (Ferrell Commons 185, sas@ucf.edu, phone 407-823-2371). For students connected with SAS, a Course Accessibility Letter may be created and sent to professors, which informs faculty of potential course access and accommodations that might be necessary and reasonable. Determining reasonable access and accommodations requires consideration of the course design, course learning objectives and the individual academic and course barriers experienced by the student. Further conversation with SAS, faculty and the student may be warranted to ensure an accessible course experience.
+
+\subsection*{Campus Safety Statement}
+
+Emergencies on campus are rare, but if one should arise during class, everyone needs to work together. Students should be aware of their surroundings and familiar with some basic safety and security concepts.
+
+\begin{itemize}
+    \item In case of an emergency, dial 911 for assistance.
+    \item Every UCF classroom contains an emergency procedure guide posted on a
+    wall near the door. Students should make a note of the guide’s physical
+    location and review the online version at
+    \url{http://emergency.ucf.edu/emergency_guide.html}.
+    \item Students should know the evacuation routes from each of their classrooms and have a plan for finding safety in case of an emergency.
+    \item If there is a medical emergency during class, students may need to
+    access a first-aid kit or AED (Automated External Defibrillator). To learn
+    where those are located, see
+    \url{https://ehs.ucf.edu/automated-external-defibrillator-aed-locations}.
+    \item To stay informed about emergency situations, students can sign up to
+    receive UCF text alerts by going to \url{https://my.ucf.edu} and logging in.
+    Click on “Student Self Service” located on the left side of the screen in the
+    toolbar, scroll down to the blue “Personal Information” heading on the Student
+    Center screen, click on “UCF Alert”, fill out the information, including e-mail
+    address, cell phone number, and cell phone provider, click “Apply” to save the
+    changes, and then click “OK.”Students with special needs related to emergency
+    situations should speak with their instructors outside of class. To learn about
+    how to manage an active-shooter situation on campus or elsewhere, consider
+    viewing this video (\url{https://youtu.be/NIKYajEx4pk}).
+
+\end{itemize}
+
+\textbf{Campus Safety Statement for Students in Online-Only Courses}
+
+Though most emergency situations are primarily relevant to courses that meet in
+person, such incidents can also impact online students, either when they are on
+or near campus to participate in other courses or activities or when their
+course work is affected by off-campus emergencies. The following policies apply
+to courses in online modalities.
+
+To stay informed about emergency situations, students can sign up to receive UCF
+text alerts by going to \url{https://my.ucf.edu} and logging in. Click on “Student
+Self Service” located on the left side of the screen in the toolbar, scroll down
+to the blue “Personal Information” heading on the Student Center screen, click
+on “UCF Alert”, fill out the information, including e-mail address, cell phone
+number, and cell phone provider, click “Apply” to save the changes, and then
+click “OK.”Students with special needs related to emergency situations should
+speak with their instructors outside of class.
+
+\subsection*{Deployed Active Duty Military Students}
+
+Students who are deployed active duty military and/or National Guard personnel
+and require accommodation should contact their instructors as soon as possible
+after the semester begins and/or after they receive notification of deployment
+to make related arrangements.
+
+\subsection*{COVID-19}
+
+I recognize and understand the difficult times we are all in. The COVID-19
+pandemic impacts us all in many ways, including physically, mentally,
+emotionally, financially, academically, and professionally. I will work with you
+on challenges you may be encountering and to provide support to help you
+succeed. However, please keep in mind that I will hold you accountable,
+especially in terms of class attendance (in person or virtual), participation,
+and contributions.
+
+UCF expects that all members of our campus community who are able to do so get
+vaccinated, and we expect all members of our campus community to wear masks
+indoors,
+\href{https://www.cdc.gov/coronavirus/2019-ncov/vaccines/fully-vaccinated.html}{in
+line with the latest CDC guidelines}. Masks are required in approved clinical or
+health care settings.
+
+Students who believe they may have been exposed to COVID-19 or who test positive
+must contact UCF Student Health Services (407-823-2509) so proper contact
+tracing procedures can take place. Students should not come to campus if they
+are ill, are experiencing any symptoms of COVID-19 or have tested positive for
+COVID-19.
+
+Accommodations may need to be added or adjusted should this course shift from an
+on-campus to a remote format. Students with disabilities should speak with their
+instructor and should contact sas@ucf.edu to discuss specific accommodations for
+this or other courses.
+
+Students should contact their instructor(s) as soon as possible if they miss
+class for any illness to discuss reasonable adjustments that might need to be
+made. When possible, students should contact their instructor(s) before missing
+class.
+
+\input{./footer.tex}
+
+\end{document}
