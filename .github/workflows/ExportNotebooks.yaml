@@ -31,7 +31,7 @@ jobs:
                   import Pkg;
                   Pkg.activate(".");
                   Pkg.instantiate();
-                  include("make.jl");
+                  include("make.jl");'
             - name: Setup Hugo
               uses: peaceiris/actions-hugo@v2
               with:
