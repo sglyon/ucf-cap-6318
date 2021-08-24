@@ -14,13 +14,16 @@ for (root, dirs, files) in walkdir(NB_DIR)
     prefix_match = match(r"week(\d\d)", root)
     prefix = !isnothing(prefix_match) ? prefix_match[1] : ""
     prefix_num = length(prefix) > 0 ? parse(Int, prefix) : 0
-
+    
     for (i, file) in enumerate(sort(files))
         fn = relpath(joinpath(root, file))
         suffix_match = match(r"(\d\d).+\.jl", file)
         suffix = !isnothing(suffix_match) ? suffix_match[1] : ""
         pre = length(suffix) > 0 && length(prefix) > 0 ? "$(prefix).$(suffix) " : ""
+
         if fn in nbs
+            # make sure path exists
+            mkpath("../website/content/$(root)")
             @show fn
             if suffix == "00"
                 content = """
