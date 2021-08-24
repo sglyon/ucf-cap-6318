@@ -104,7 +104,7 @@ md"""
     - Will be supplemented by lecture notes for more computational content
 - [Julia](https://julialang.org/) Programming language
 - Lecture notes AND assignments in [Pluto.jl](https://github.com/fonsp/Pluto.jl)
-- Material distribution  via [course website](https://sglyon.github.io/ucf-cap-3618/)
+- Material distribution  via [course website](https://sglyon.github.io/ucf-cap-6318/)
 - Homework submission to happen via [GitHub](https://github.com/) and [GitHub Classroom](https://classroom.github.com/classrooms)
 """
 
