@@ -3,11 +3,11 @@ title: Home
 weight: 1
 ---
 
-# CAP-3618
+# CAP-6318
 
 ## Computational Analysis of Social Complexity
 
-Welcome to the inagural running of the CAP-3618 course!
+Welcome to the inagural running of the CAP-6318 course!
 
 This course is designed to introduce students to the key theoretical and practical (programming) concepts necessary to answer meaninful questions about the connections we observe and are a part of in the world around us.
 
@@ -22,10 +22,10 @@ With all that is going on in the world right now -- from COVID to Twitter and po
 - Who:
   - Instructor: [Spencer Lyon](mailto:spencer.lyon@ucf.edu)
   - Graduate Assistant: [Rayma Akula](mailto:ramya.akula@knights.ucf.edu)
-- Syllabus: [https://github.com/sglyon/ucf-cap-3618/raw/Fall21/syllabus/fall2021.pdf](https://github.com/sglyon/ucf-cap-3618/raw/Fall21/syllabus/fall2021.pdf)
+- Syllabus: [https://github.com/sglyon/ucf-cap-6318/raw/Fall21/syllabus/fall2021.pdf](https://github.com/sglyon/ucf-cap-6318/raw/Fall21/syllabus/fall2021.pdf)
 - Core textbook: Networks, Crowds, and Markets by Easley and Klienberg (available for free [online](https://www.cs.cornell.edu/home/kleinber/networks-book/))
 - Useful links:
-  - [Course website](https://sglyon.github.io/ucf-cap-3618/) (this page)
+  - [Course website](https://sglyon.github.io/ucf-cap-6318/) (this page)
   - [Canvas course on UCF webcourses](https://webcourses.ucf.edu/courses/1392110) (grades will be posted here)
   - [Discussion group on Canvas](https://webcourses.ucf.edu/courses/1392110/discussion_topics)
 

@@ -9,3 +9,4 @@ website/content/notebooks
 *.log
 *.out
 *.gz
+*_temp.tex

@@ -375,6 +375,39 @@ function breadth_first_distances(g, start::Int)
 	out
 end
 
+# ╔═╡ 79c915de-26a4-4a54-876f-ecda9983fb65
+md"""
+## BFS with LightGraphs
+
+- The LightGraphs library contains routines implementing breadth-first search
+- The main function is called `bfs_tree`
+"""
+
+# ╔═╡ b6ccd634-df39-4b63-afee-e6cb3dd7f16b
+bfs_carn = bfs_tree(arpa, node_ints["CARN"])
+
+# ╔═╡ 90b2eee2-9f1e-4e6d-b942-da8b6b7da94e
+md"""
+- Notice that the printout says we have a graph with 13 nodes, 12 edges and it is a **directed** graph
+- Thus far, all graphs we have considered have been undirected
+- We have only been concerned about if a connection (edge) exists between nodes
+- A directed graph extends the notion of connecting nodes with a direction
+- We can now say that *things* flow across edges from one node to another -- always in the same direction
+- Why would the breadth-first search routine return a directed graph instead of the undirected type we started with?
+"""
+
+# ╔═╡ f1634dc7-769e-48cc-abe6-753be4f1a126
+gplot(bfs_carn, nodelabel=first.(nodes))
+
+# ╔═╡ d48092ad-3d31-4dbb-9e45-aa1614eadb38
+
+
+# ╔═╡ b1567b12-9d3d-4869-9b29-40e87f714b61
+
+
+# ╔═╡ 231d230d-051f-44bd-b7c8-575c802c3e77
+
+
 # ╔═╡ 7aa47418-dcc0-4eb3-9992-584a630a3573
 md"""
 # Dependencies
@@ -802,6 +835,13 @@ uuid = "3f19e933-33d8-53b3-aaab-bd5110c3b7a0"
 # ╟─25a712e3-1cdf-43c3-9b99-3df9225690c8
 # ╠═aa590c0c-bad3-4eff-855e-2b05e5f3917b
 # ╟─8d80ccab-83c4-414f-9042-1b79a40b9a58
+# ╠═79c915de-26a4-4a54-876f-ecda9983fb65
+# ╠═b6ccd634-df39-4b63-afee-e6cb3dd7f16b
+# ╠═90b2eee2-9f1e-4e6d-b942-da8b6b7da94e
+# ╠═f1634dc7-769e-48cc-abe6-753be4f1a126
+# ╠═d48092ad-3d31-4dbb-9e45-aa1614eadb38
+# ╠═b1567b12-9d3d-4869-9b29-40e87f714b61
+# ╠═231d230d-051f-44bd-b7c8-575c802c3e77
 # ╟─7aa47418-dcc0-4eb3-9992-584a630a3573
 # ╟─c7d82edc-d486-4c53-8158-378f61ef8026
 # ╠═4ff5e61f-c221-476b-bb23-ea2943a914bc
