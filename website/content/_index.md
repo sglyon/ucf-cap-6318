@@ -1,6 +1,7 @@
 ---
 title: Home
 weight: 1
+type: nonNotebook
 ---
 
 # CAP-6318
@@ -28,6 +29,7 @@ With all that is going on in the world right now -- from COVID to Twitter and po
   - [Course website](https://sglyon.github.io/ucf-cap-6318/) (this page)
   - [Canvas course on UCF webcourses](https://webcourses.ucf.edu/courses/1392110) (grades will be posted here)
   - [Discussion group on Canvas](https://webcourses.ucf.edu/courses/1392110/discussion_topics)
+  - [Due Dates page](/ucf-cap-6318/duedates): Page with all due dates for course (also see in navigation bar on left)
 
 ### Course Administration
 
