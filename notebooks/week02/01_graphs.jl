@@ -10,6 +10,9 @@ using LightGraphs, GraphPlot
 # ╔═╡ 4ff5e61f-c221-476b-bb23-ea2943a914bc
 using PlutoUI
 
+# ╔═╡ c7d82edc-d486-4c53-8158-378f61ef8026
+html"""<button onClick="present()">present</button>"""
+
 # ╔═╡ 15e99b4e-042a-11ec-30d5-7fc98c6d5177
 md"""
 # Graphs
@@ -24,10 +27,13 @@ md"""
 
 **Outcomes**
 
+- Understand key components of networks/graphs
+- Use the LightGraphs.jl package for working with graphs in Julia
+- Implement the breadth-first search algorithm
 
 **References**
 
-- [Easley and Kleinberg](https://www.cs.cornell.edu/home/kleinber/networks-book/) chapters 2-3
+- [Easley and Kleinberg](https://www.cs.cornell.edu/home/kleinber/networks-book/) chapter 2
 """
 
 # ╔═╡ 281ac180-08dc-4094-9671-03033929cb99
@@ -456,9 +462,6 @@ md"""
 # Dependencies
 """
 
-# ╔═╡ c7d82edc-d486-4c53-8158-378f61ef8026
-html"""<button onClick="present()">present</button>"""
-
 # ╔═╡ a783eb00-fd8c-4e6a-bf89-adc2a0dd38d7
 begin
 	hint(text) = Markdown.MD(Markdown.Admonition("hint", "Hint", [text]))
@@ -500,6 +503,7 @@ begin
 			end
 		end
 	end
+	nothing
 end
 
 # ╔═╡ 70bdad27-b787-4547-9095-d7856909ed64
@@ -840,6 +844,7 @@ uuid = "3f19e933-33d8-53b3-aaab-bd5110c3b7a0"
 """
 
 # ╔═╡ Cell order:
+# ╟─c7d82edc-d486-4c53-8158-378f61ef8026
 # ╟─15e99b4e-042a-11ec-30d5-7fc98c6d5177
 # ╟─281ac180-08dc-4094-9671-03033929cb99
 # ╟─cbe8e17d-1fd5-40a8-ad5f-660258840464
@@ -906,7 +911,6 @@ uuid = "3f19e933-33d8-53b3-aaab-bd5110c3b7a0"
 # ╟─dacffea9-39be-42eb-aeeb-9dd334fb3278
 # ╟─2c4219b3-ffe7-40bf-91c2-e4d49b022ffa
 # ╟─7aa47418-dcc0-4eb3-9992-584a630a3573
-# ╟─c7d82edc-d486-4c53-8158-378f61ef8026
 # ╠═4ff5e61f-c221-476b-bb23-ea2943a914bc
 # ╟─a783eb00-fd8c-4e6a-bf89-adc2a0dd38d7
 # ╟─00000000-0000-0000-0000-000000000001
