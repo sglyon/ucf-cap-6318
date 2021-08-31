@@ -457,6 +457,30 @@ Markdown.MD(Markdown.Admonition("info", "Aside: methods", [md"""
 - We'll learn more about them in the homework...
 """]))
 
+# ╔═╡ a523e8fc-1889-4b91-a12d-9e29c24921b4
+md"""
+## Components
+
+- A *component* of a graph is a self-contained subset of the nodes
+- More precisely, a set of nodes is a component if
+  1. Every node in the subset has a path to every other node in the subset
+  2. The subset is not part of a larger set with property (1)
+- Example:
+"""
+
+# ╔═╡ 557ea699-3fc2-4b71-9ecf-8806b3f5229a
+PlutoUI.LocalResource("./graph_components.png")
+
+# ╔═╡ f8d21ddd-31cb-4588-96de-82df3b2cb448
+md"""
+## Example
+
+- How many components are in this graph?
+"""
+
+# ╔═╡ 96c2ecd2-627a-45bd-bfae-1122831b77f3
+PlutoUI.LocalResource("./hs_dating_graph.png")
+
 # ╔═╡ 7aa47418-dcc0-4eb3-9992-584a630a3573
 md"""
 # Dependencies
@@ -910,6 +934,10 @@ uuid = "3f19e933-33d8-53b3-aaab-bd5110c3b7a0"
 # ╠═03b06222-0ac7-4da7-ac6c-52b16861fd8f
 # ╟─dacffea9-39be-42eb-aeeb-9dd334fb3278
 # ╟─2c4219b3-ffe7-40bf-91c2-e4d49b022ffa
+# ╟─a523e8fc-1889-4b91-a12d-9e29c24921b4
+# ╟─557ea699-3fc2-4b71-9ecf-8806b3f5229a
+# ╟─f8d21ddd-31cb-4588-96de-82df3b2cb448
+# ╟─96c2ecd2-627a-45bd-bfae-1122831b77f3
 # ╟─7aa47418-dcc0-4eb3-9992-584a630a3573
 # ╠═4ff5e61f-c221-476b-bb23-ea2943a914bc
 # ╟─a783eb00-fd8c-4e6a-bf89-adc2a0dd38d7
