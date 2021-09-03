@@ -79,11 +79,11 @@ md"""
   - Without loss of generality, we'll represent them as integers `1:N`
 - Let $A \in \{0,1\}^{N \times N}$ be our adjacency matrix
 - Element $A_{ij}$ will be zero unless there is an edge between nodes $i$ and $j$ (diagonal is left as $0$)
-- In our above we had 
+- In our above we had
   - Nodes `A`, `B`, `C`, `D` (or 1, 2, 3, 4 respectively)
   - Edges connecting nodes `1-2`, `2-3`, `2-4`, `3-4`
-- The adjacency matrix for this example is 
-$$A = \begin{bmatrix} 
+- The adjacency matrix for this example is
+$$A = \begin{bmatrix}
 0 & 1 & 0 & 0 \\
 1 & 0 & 1 & 1 \\
 0 & 1 & 0 & 1 \\
@@ -135,7 +135,7 @@ md"""
 # ╔═╡ 7e6382d0-3e6b-4d30-8ed8-78ea3dd8a654
 begin  # to use multiple lines in a cell you need to use `begin` CODE `end`
 	A_ex1 = rand(0:1, 30, 30)
-	
+
 	# remove diagonal elements
 	for i in 1:30
 		A_ex1[i, i] = 0
@@ -197,11 +197,11 @@ md"""
 - Using `Array{Int64,2}` to store an adjacency matrix turns out to be a rather costly way to store a graph
 - In the original example graph we had 4 nodes and 4 edges
 - To store this we needed to have a 4x4 matrix of 64 bit integers
-  - This is only $(Int(16 * 64 / 8)) bytes in our exapmle, 
+  - This is only $(Int(16 * 64 / 8)) bytes in our exapmle,
   - But consider a graph of websites and links between them -- that graph would have millions of nodes and edges...
 - There are a few approaches to reducing this storage cost:
   - Only store the upper triangle of the matrix
-  - Use Boolean ( $(sizeof(Bool)) bit!) instead of Int to store 
+  - Use Boolean ( $(sizeof(Bool)) bit!) instead of Int to store
   - Use a [SparseMatrix](https://docs.julialang.org/en/v1/stdlib/SparseArrays/)
   - Store as a `Vector{Vector{Int}}`
 """
@@ -283,13 +283,13 @@ begin
 			add_edge!(arpa, node_ints[node], node_ints[e])
 		end
 	end
-	
+
 	# save graph for loading in future
 	savegraph("arpanet.lg", arpa)
-	
+
 	nothing  # don't print anything
 end
-		
+
 
 # ╔═╡ 81067778-4c59-4cda-9f88-a4d0c6568efc
 arpa
@@ -374,9 +374,9 @@ function breadth_first_distances(g, start::Int)
 	out = Vector{Int}[]
 	# use push!(out, new_nodes) to add to out
 	distance = 0
-	
+
 	# TODO: your code here...
-	
+
 	# return out
 	out
 end
@@ -442,16 +442,16 @@ function breadth_first_distances(g::SimpleDiGraph, start::Int)
 	out = Vector{Int}[]
 	# use push!(out, new_nodes) to add to out
 	distance = 0
-	
+
 	# TODO: your code here...
-	
+
 	# return out
 	out
 end
 
 # ╔═╡ 2c4219b3-ffe7-40bf-91c2-e4d49b022ffa
 Markdown.MD(Markdown.Admonition("info", "Aside: methods", [md"""
-- Julia's core abstraction is called **multiple dispatch** 
+- Julia's core abstraction is called **multiple dispatch**
 - Multiple dispatch means function behavior can be specialized based on types of all arguments
 - A [method](https://docs.julialang.org/en/v1/manual/methods/) is a specific instance of a function that is only callable with certain argument types
 - We'll learn more about them in the homework...
@@ -489,22 +489,22 @@ md"""
 # ╔═╡ a783eb00-fd8c-4e6a-bf89-adc2a0dd38d7
 begin
 	hint(text) = Markdown.MD(Markdown.Admonition("hint", "Hint", [text]))
-	
+
 	almost(text) = Markdown.MD(Markdown.Admonition("warning", "Almost there!", [text]))
-	
+
 	still_missing(text=md"Replace `missing` with your answer.") = Markdown.MD(Markdown.Admonition("warning", "Here we go!", [text]))
-	
+
 	keep_working(text=md"The answer is not quite right.") = Markdown.MD(Markdown.Admonition("danger", "Keep working on it!", [text]))
-	
+
 	yays = [md"Fantastic!", md"Splendid!", md"Great!", md"Yay ❤", md"Great! 🎉", md"Well done!", md"Keep it up!", md"Good job!", md"Awesome!", md"You got the right answer!", md"Let's move on to the next section."]
-	
+
 	correct(text=rand(yays)) = Markdown.MD(Markdown.Admonition("correct", "Got it!", [text]))
-	
+
 	not_defined(variable_name) = Markdown.MD(Markdown.Admonition("danger", "Oopsie!", [md"Make sure that you define a variable called **$(Markdown.Code(string(variable_name)))**"]))
-	
+
 	check_number(have::Int, want::Int) = have == want
 	check_number(have::T, want::T) where T <: AbstractFloat = abs(want - have) < 1e-10
-	
+
 	function default_checks(vname, have, want)
 		if ismissing(have)
 			still_missing(Markdown.MD(Markdown.Paragraph([
@@ -513,13 +513,13 @@ begin
 			])))
 		elseif typeof(have) != typeof(want)
 			keep_working(Markdown.MD(Markdown.Paragraph([
-				Markdown.Code(vname), 
+				Markdown.Code(vname),
 				"should be a $(typeof(want)), found $(typeof(have))"
 			])))
 		else
 			if !check_number(have, want)
 				keep_working(Markdown.MD(Markdown.Paragraph([
-				Markdown.Code(vname), 
+				Markdown.Code(vname),
 				"is not quite right"
 			])))
 			else
@@ -541,15 +541,15 @@ default_checks("ex1_node_most_edges", ex1_node_most_edges, argmax(sum(A_ex1, dim
 
 # ╔═╡ f6555dd0-2299-4be4-8a79-8bbc39b00f98
 default_checks(
-	"ex1_average_edges_per_node", 
-	ex1_average_edges_per_node, 
+	"ex1_average_edges_per_node",
+	ex1_average_edges_per_node,
 	sum(A_ex1) / size(A_ex1, 1)
 )
 
 # ╔═╡ 14c248d0-2030-4682-a7e2-d8aa177ba366
 default_checks(
-	"ex1_connections_node_7", 
-	ex1_connections_node_7, 
+	"ex1_connections_node_7",
+	ex1_connections_node_7,
 	sum(A_ex1[7, :])
 )
 
@@ -576,7 +576,7 @@ end
 # ╔═╡ dacffea9-39be-42eb-aeeb-9dd334fb3278
 let
 	val = breadth_first_distances(
-		bfs_tree(arpa, node_ints["HARV"]), 
+		bfs_tree(arpa, node_ints["HARV"]),
 		node_ints["HARV"]
 	)
 	want = [[9, 12], [7, 8, 11], [3, 6, 5, 10], [1, 2, 4]]
@@ -921,7 +921,7 @@ uuid = "3f19e933-33d8-53b3-aaab-bd5110c3b7a0"
 # ╟─ac46aefb-24b3-422c-afa3-d26c5f545c60
 # ╟─25a712e3-1cdf-43c3-9b99-3df9225690c8
 # ╠═aa590c0c-bad3-4eff-855e-2b05e5f3917b
-# ╠═8d80ccab-83c4-414f-9042-1b79a40b9a58
+# ╟─8d80ccab-83c4-414f-9042-1b79a40b9a58
 # ╟─79c915de-26a4-4a54-876f-ecda9983fb65
 # ╠═b6ccd634-df39-4b63-afee-e6cb3dd7f16b
 # ╟─90b2eee2-9f1e-4e6d-b942-da8b6b7da94e
@@ -940,6 +940,6 @@ uuid = "3f19e933-33d8-53b3-aaab-bd5110c3b7a0"
 # ╟─96c2ecd2-627a-45bd-bfae-1122831b77f3
 # ╟─7aa47418-dcc0-4eb3-9992-584a630a3573
 # ╠═4ff5e61f-c221-476b-bb23-ea2943a914bc
-# ╠═a783eb00-fd8c-4e6a-bf89-adc2a0dd38d7
+# ╟─a783eb00-fd8c-4e6a-bf89-adc2a0dd38d7
 # ╟─00000000-0000-0000-0000-000000000001
 # ╟─00000000-0000-0000-0000-000000000002
