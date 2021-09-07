@@ -174,12 +174,19 @@ local_clustering_coefficient(g2)
 # ╔═╡ 954fb52b-9079-4eea-a951-f492821bd161
 global_clustering_coefficient(g2)
 
+# ╔═╡ 45111ec6-6370-4274-af97-9dd949139f70
+md"""
+- **Question**: In the graph below, how many open triangles are there? How many closed?
+"""
+
+# ╔═╡ 8a114aa3-d928-46be-9705-f004fcabc678
+gplot(g2, nodelabel='A':'E', layout=shell_layout)
+
 # ╔═╡ e8155e31-6d22-49b9-95a1-e4c0cfe5ad62
 md"""
 # Bridges
 
 - Consider the graph below
-- **Question**: In the graph above, how many open triangles are there? How many closed?
 """
 
 # ╔═╡ 3f3de0c2-5172-40e9-a363-1a3f0cb65f8a
@@ -322,7 +329,7 @@ md"""
 ## Triadic Closure: Strong Vs Weak
 
 - Let's extend the inutition behind triadic closure to our strong/weak setting
-- Our argument was that we have edges `A-B` and `A-C`, it is likely that an edge `B-C` will form
+- Our argument was that because we have edges `A-B` and `A-C`, it is likely that an edge `B-C` will form
 - Now we'll state that if `A-B` and `A-C` are both strong ties, then it is more likely that `B-C` will form than if either `A-B` or `A-C` were weak
 - More formally... we have  the *Strong Triadic Closure Property*
 > We say that a node `A` violates the Strong Triadic Closure Property if it has strong ties to two other nodes `B` and `C`, and there is no edge at all (either a strong or weak tie) between `B` and `C`. We say that a node `A` satisfies the Strong Triadic Closure Property if it does not violate it.
@@ -430,8 +437,8 @@ md"""
   - Inputs: node
   - Outputs: list of edges to delete at each step
   - Algorithm:
-    1. Find nodes with highest betweenness centrality -- remove them from the network (and add edges connecting them to the network to hte list of deleted edges for first step)
-    2. Re-compute betweenness centrality for all subgraphs that resulted from deltion in step 1. Remove all nodes with highst betweenness centrality and record list of deleted edges
+    1. Find nodes with highest betweenness centrality -- remove them from the network (and add edges connecting them to the network to the list of deleted edges for first step)
+    2. Re-compute betweenness centrality for all subgraphs that resulted from deletion in step 1. Remove all nodes with highest betweenness centrality and record list of deleted edges
     3. Continue until all edges have been removed
 """
 
@@ -844,6 +851,8 @@ uuid = "3f19e933-33d8-53b3-aaab-bd5110c3b7a0"
 # ╟─18504d01-4b75-40bf-94dd-2041ef650c51
 # ╠═b00f160a-2a85-4488-8d08-316f761bc968
 # ╠═954fb52b-9079-4eea-a951-f492821bd161
+# ╟─45111ec6-6370-4274-af97-9dd949139f70
+# ╠═8a114aa3-d928-46be-9705-f004fcabc678
 # ╟─e8155e31-6d22-49b9-95a1-e4c0cfe5ad62
 # ╠═3f3de0c2-5172-40e9-a363-1a3f0cb65f8a
 # ╟─44cc5acc-fdc9-4a11-b406-e917c75e72d4
