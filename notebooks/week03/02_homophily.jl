@@ -28,7 +28,9 @@ md"""
 
 **Outcomes**
 
-- 
+- Understand the concept of homophily
+- Practice working through "by hand" examples of diagnosing homophily
+- Be prepared to computationally diagnose homophily in a large network
 
 **References**
 
