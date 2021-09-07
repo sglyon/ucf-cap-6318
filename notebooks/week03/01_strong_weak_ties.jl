@@ -10,9 +10,9 @@ using LightGraphs,  LightGraphs.LinAlg, GraphPlot
 # ╔═╡ 2888aac7-2228-44a6-a8b4-2a7d468fac67
 begin
 	using Downloads
-	if !isfile("local_bridge.lg")
-		Downloads.download("https://raw.githubusercontent.com/sglyon/ucf-cap-6318/Fall21/notebooks/week02/local_bridge.lg", "local_bridge.lg")
-	end
+	# if !isfile("local_bridge.lg")
+		Downloads.download("https://raw.githubusercontent.com/sglyon/ucf-cap-6318/Fall21/notebooks/week03/local_bridge.lg", "local_bridge.lg")
+	# end
 	g5 = loadgraph("local_bridge.lg")
 	gplot(g5, nodelabel='A':'M', layout=spring_layout)
 end
@@ -22,6 +22,9 @@ using SNAPDatasets
 
 # ╔═╡ 7c08cce9-c194-465e-8934-055f2f6f84da
 using PlutoUI
+
+# ╔═╡ f800da3e-2ffd-40a5-bfaf-33d32688e8af
+html"""<button onClick="present()">present</button>"""
 
 # ╔═╡ 5cdc2c64-0a61-11ec-2727-7513e274589e
 md"""
@@ -91,6 +94,16 @@ begin
 	gplot(g1, nodelabel='A':'E', layout=shell_layout)
 end
 
+# ╔═╡ 9a704d0f-b05d-4cf9-a31d-38a4c5077080
+begin
+	g2_test = copy(g1)
+	add_edge!(g2_test, 3, 5)
+	gplot(g2_test, nodelabel='A':'E', layout=shell_layout)
+end
+
+# ╔═╡ 616310c0-266f-4534-ace2-e586d5c20efa
+local_clustering(g2_test)
+
 # ╔═╡ 7bacdeff-97e7-4902-aa4e-f1698cba1315
 md"""
 ## Social Triangles
@@ -101,7 +114,7 @@ md"""
 - Story... 
   - `A` went to and out of school state, but happened to know `B`, `C`, and `D` from various summer camps or family-friend relationships
   - None of `B`, `C` and `D` know one another
-- Question: Given only this information, is it more likely that `B` and `E` become friends, or `B` and `C`? Why?
+- Question: Given only this information, is it more likely that `B` and `D` become friends, or `B` and `C`? Why?
 """
 
 # ╔═╡ eb8d0345-2a5c-470a-9f70-0703aa1abd4f
@@ -151,6 +164,9 @@ md"""
   2. The number of *possible* triangles for each node in g
 """
 
+# ╔═╡ 73431460-7fca-46b3-8a94-c99978943727
+
+
 # ╔═╡ d37bf539-ba4a-4bad-9b49-529c31752878
 local_clustering(g1)
 
@@ -194,6 +210,9 @@ begin
 	g3 = barbell_graph(4, 4)
 	gplot(g3, nodelabel='A':'H', layout=spring_layout)
 end
+
+# ╔═╡ 5c04a8df-6325-42b6-bb4d-6e39b27b0d11
+local_clustering(g3, 4)
 
 # ╔═╡ 44cc5acc-fdc9-4a11-b406-e917c75e72d4
 md"""
@@ -832,12 +851,15 @@ uuid = "3f19e933-33d8-53b3-aaab-bd5110c3b7a0"
 """
 
 # ╔═╡ Cell order:
+# ╟─f800da3e-2ffd-40a5-bfaf-33d32688e8af
 # ╟─5cdc2c64-0a61-11ec-2727-7513e274589e
 # ╟─e8898c44-0864-4d64-99a4-96c57905c46f
 # ╟─382fcc1a-0df5-48b7-80ab-cbc5fece0d74
 # ╟─efd45a43-de4d-4d4c-b575-dfcfb06a02c7
 # ╠═521c893c-116d-4912-a163-716b28e3773e
 # ╠═8cce7c54-4263-41d6-b1bb-49b7081a5311
+# ╠═9a704d0f-b05d-4cf9-a31d-38a4c5077080
+# ╠═616310c0-266f-4534-ace2-e586d5c20efa
 # ╟─7bacdeff-97e7-4902-aa4e-f1698cba1315
 # ╟─eb8d0345-2a5c-470a-9f70-0703aa1abd4f
 # ╠═1808620b-4ac3-4ae7-b442-ce72372ecfcd
@@ -846,6 +868,7 @@ uuid = "3f19e933-33d8-53b3-aaab-bd5110c3b7a0"
 # ╠═759b1bcc-872f-4837-a52d-ed247d82bb43
 # ╠═a265f78e-cdfb-4b48-a228-328787ba204b
 # ╟─b2461922-d84d-418f-9349-2da2b1832cac
+# ╠═73431460-7fca-46b3-8a94-c99978943727
 # ╠═d37bf539-ba4a-4bad-9b49-529c31752878
 # ╠═691be200-3798-4c0a-b89b-fdf3732597b4
 # ╟─18504d01-4b75-40bf-94dd-2041ef650c51
@@ -854,6 +877,7 @@ uuid = "3f19e933-33d8-53b3-aaab-bd5110c3b7a0"
 # ╟─45111ec6-6370-4274-af97-9dd949139f70
 # ╠═8a114aa3-d928-46be-9705-f004fcabc678
 # ╟─e8155e31-6d22-49b9-95a1-e4c0cfe5ad62
+# ╠═5c04a8df-6325-42b6-bb4d-6e39b27b0d11
 # ╠═3f3de0c2-5172-40e9-a363-1a3f0cb65f8a
 # ╟─44cc5acc-fdc9-4a11-b406-e917c75e72d4
 # ╠═ca9c4ec8-e5b5-4e57-a136-45ef34ee7213
