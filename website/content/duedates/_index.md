@@ -15,3 +15,10 @@ This is where you will find all due dates for the course. This page will change 
 - GitHub Classroom links:
   - [Julia practice](https://classroom.github.com/a/Hh8xh6gC)
   - [Git and GitHub Fundamentals](https://classroom.github.com/a/zG2dBVI3)
+
+## Homework 2 (Due Date 2021-09-17)
+
+- Assigned Date: Wedneday September 8, 2021
+- Due Date: Friday September 17, 2021
+- GitHub Classroom links:
+  - [Working with Graphs](https://classroom.github.com/a/6pW2OUcq)
