@@ -10,3 +10,4 @@ website/content/notebooks
 *.out
 *.gz
 *_temp.tex
+.DS_Store
