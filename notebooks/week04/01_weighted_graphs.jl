@@ -25,7 +25,7 @@ md"""
 
 **Outcomes**
 
-- Know what a weighted graph is and how to construct them using `MetaGraphs.jl`
+- Know what a weighted graph is and how to construct them using `SimpleWeightedGraphs.jl`
 - Understand the structural balance property for sets of three nodes
 - Understand the structural balance theorem for a graph
 - Recognize structural balance in a weighted graph
@@ -165,7 +165,7 @@ Resource("https://github.com/sglyon/ucf-cap-6318/raw/Fall21/notebooks/week04/gra
 md"""
 - With $J(v)$ in hand, the following algorithm will find the cost-minimizing path from $A$ to $G$:
   1. Start with $v = A$
-  2. From current node $v$ move to any node that solves $\min_{n \in F_v} w_{vn} + J(w)$, where $F_v$ is the set of nodes that can be reached from $v$. 
+  2. From current node $v$ move to any node that solves $\min_{n \in F_v} w_{vn} + J(n)$, where $F_v$ is the set of nodes that can be reached from $v$. 
   3. Update notation to set $v = n$
   3. Repeat steps 2-3 (making note of which we visit) until $v = G$
 """
@@ -240,7 +240,7 @@ md"""
 - Let $i$ represent the iteration we are on and $J_i(v)$ be the guess for $J(v)$ on iteration $i$
 - Algorithm
   1. Set $i=0$, and $J_i(v) = 0 \forall v$
-  2. Set $J_{i+1}(v) = \min_{n \in F_v} w_{vn} + J_i(v)$
+  2. Set $J_{i+1}(v) = \min_{n \in F_v} w_{vn} + J_i(n) \forall n$
   3. Check if $J_{i+1}$ and $J_i$ are equal for all $v$ -- if not set $i = i+1$ and see repeat steps 2-3
 - This algorithm converges to $J$ (we won't prove it here...)
 """
@@ -408,7 +408,7 @@ md"""
 md"""
 ### Condition 3: $\forall B \in X$ and $E \in Y \; B => E = -$
 
-- Let $B \in X$ and $E \in Y$
+- Let $B \in X$ and $D \in Y$
 - We know $A => D = -$ and $A => B = +$
 - Because graph is balanced, this triangle must have 1 or 3 +
 - There is one + (A=>B) and only one option left, so it must be that $B => D = -$
