@@ -25,7 +25,7 @@ md"""
 
 **Outcomes**
 
-- Know what a weighted graph is and how to construct them using `MetaGraphs.jl`
+- Know what a weighted graph is and how to construct them using `SimpleWeightedGraphs.jl`
 - Understand the structural balance property for sets of three nodes
 - Understand the structural balance theorem for a graph
 - Recognize structural balance in a weighted graph
@@ -165,7 +165,7 @@ Resource("https://github.com/sglyon/ucf-cap-6318/raw/Fall21/notebooks/week04/gra
 md"""
 - With $J(v)$ in hand, the following algorithm will find the cost-minimizing path from $A$ to $G$:
   1. Start with $v = A$
-  2. From current node $v$ move to any node that solves $\min_{n \in F_v} w_{vn} + J(w)$, where $F_v$ is the set of nodes that can be reached from $v$. 
+  2. From current node $v$ move to any node that solves $\min_{n \in F_v} w_{vn} + J(n)$, where $F_v$ is the set of nodes that can be reached from $v$. 
   3. Update notation to set $v = n$
   3. Repeat steps 2-3 (making note of which we visit) until $v = G$
 """
@@ -182,6 +182,12 @@ md"""
 # ╔═╡ 23eea7e4-3b75-4f64-a9d0-b6a86625db0a
 J3 = [8, 10, 3, 5, 4, 1, 0]
 
+# ╔═╡ ff14f217-55f4-46ec-bc31-33621102d9e3
+[2^i for i in 1:3]
+
+# ╔═╡ 89f0aadd-c8dc-41dd-ba42-1be3a4790614
+weights(G3)
+
 # ╔═╡ da34599b-5a87-4e32-a90f-61cc5294a18d
 function traverse_graph(
 		G::SimpleWeightedDiGraph, 
@@ -193,24 +199,24 @@ function traverse_graph(
 	W = weights(G)
 	
 	# TODO: step1, initialize v
-	v = 1  # CHANGE ME
+	v = start_node  # CHANGE ME
 	num = 0
 	while v != end_node && num < nv(G)  # prevent infinite loop
 		num +=1
 		F_v = neighbors(G, v)
 		
 		# TODO: step 2, compute costs for all n in F_v
-		costs = [0.0]  # CHANGE ME
+		costs = [W[v,n] + J[n] for n in F_v]  # CHANGE ME
 		
 		n = F_v[argmin(costs)]
 		
 		# TODO: how should we update cost?
-		cost += 0.0   # CHANGE ME
+		cost += W[v,n]   # CHANGE ME
 		
 		push!(path, n)
 		
 		# TODO: step 3 -- update v
-		v = v  # CHANGE ME
+		v = n  # CHANGE ME
 	end
 	path, cost
 end
@@ -240,7 +246,7 @@ md"""
 - Let $i$ represent the iteration we are on and $J_i(v)$ be the guess for $J(v)$ on iteration $i$
 - Algorithm
   1. Set $i=0$, and $J_i(v) = 0 \forall v$
-  2. Set $J_{i+1}(v) = \min_{n \in F_v} w_{vn} + J_i(v)$
+  2. Set $J_{i+1}(v) = \min_{n \in F_v} w_{vn} + J_i(n) \forall n$
   3. Check if $J_{i+1}$ and $J_i$ are equal for all $v$ -- if not set $i = i+1$ and see repeat steps 2-3
 - This algorithm converges to $J$ (we won't prove it here...)
 """
@@ -253,12 +259,16 @@ md"""
 - We'll walk you through our implementation
 """
 
+# ╔═╡ 650e0c6e-6aed-4991-a19d-9323f6a63fa7
+cost(W, J, n, v) = W[v, n] + J[n]
+
 # ╔═╡ 93351673-6b2f-4e9d-8ea3-ea6d66d99e82
 function compute_J(G::SimpleWeightedDiGraph, dest_node::Int)
 	N = nv(G)
 	# step 1. start with zeros
 	i = 0
 	Ji = zeros(N)
+	
 	next_J = zeros(N)
 	
 	W = weights(G)
@@ -266,19 +276,14 @@ function compute_J(G::SimpleWeightedDiGraph, dest_node::Int)
 	done = false
 	while !done
 		i += 1
-		for v in 1:nv(G)
-			if v == 7
+		for v in 1:N
+			if v == dest_node
 				next_J[v] = 0
 				continue
 			end
-			lowest_cost = Inf
-			for n in neighbors(G, v)
-				cost = W[v, n] + Ji[n]
-				if cost < lowest_cost
-					lowest_cost = cost
-				end
-			end
-			next_J[v] = lowest_cost
+			F_v = neighbors(G, v)
+			costs = [W[v,n] + Ji[n] for n in F_v]
+			next_J[v] = minimum(costs)
 		end
 		done = all(next_J .≈ Ji)
 		copy!(Ji, next_J)
@@ -302,8 +307,8 @@ md"""
 Given a weighted graph `G`, enumerate a shortest path between `start_node` and `end_node`
 """
 function shortest_path(G::SimpleWeightedDiGraph, start_node::Int, end_node::Int)
-	# your work here
-	missing
+	J = compute_J(G, end_node)
+	traverse_graph(G, J, start_node, end_node)
 end
 
 # ╔═╡ 26551afc-3a4b-4c86-9695-4e9815e99c84
@@ -408,7 +413,7 @@ md"""
 md"""
 ### Condition 3: $\forall B \in X$ and $E \in Y \; B => E = -$
 
-- Let $B \in X$ and $E \in Y$
+- Let $B \in X$ and $D \in Y$
 - We know $A => D = -$ and $A => B = +$
 - Because graph is balanced, this triangle must have 1 or 3 +
 - There is one + (A=>B) and only one option left, so it must be that $B => D = -$
@@ -538,9 +543,9 @@ version = "0.12.8"
 
 [[Compat]]
 deps = ["Base64", "Dates", "DelimitedFiles", "Distributed", "InteractiveUtils", "LibGit2", "Libdl", "LinearAlgebra", "Markdown", "Mmap", "Pkg", "Printf", "REPL", "Random", "SHA", "Serialization", "SharedArrays", "Sockets", "SparseArrays", "Statistics", "Test", "UUIDs", "Unicode"]
-git-tree-sha1 = "4866e381721b30fac8dda4c8cb1d9db45c8d2994"
+git-tree-sha1 = "727e463cfebd0c7b999bbf3e9e7e16f254b94193"
 uuid = "34da2185-b29b-5c13-b0c7-acf172513d20"
-version = "3.37.0"
+version = "3.34.0"
 
 [[Compose]]
 deps = ["Base64", "Colors", "DataStructures", "Dates", "IterTools", "JSON", "LinearAlgebra", "Measures", "Printf", "Random", "Requires", "Statistics", "UUIDs"]
@@ -636,9 +641,9 @@ uuid = "56ddb016-857b-54e1-b83d-db4d58db5568"
 
 [[MacroTools]]
 deps = ["Markdown", "Random"]
-git-tree-sha1 = "5a5bc6bf062f0f95e62d0fe0a2d99699fed82dd9"
+git-tree-sha1 = "0fb723cd8c45858c22169b2e42269e53271a6df7"
 uuid = "1914dd2f-81c6-5fcd-8719-6d5c9610ff09"
-version = "0.5.8"
+version = "0.5.7"
 
 [[Markdown]]
 deps = ["Base64"]
@@ -802,12 +807,15 @@ uuid = "3f19e933-33d8-53b3-aaab-bd5110c3b7a0"
 # ╟─e6a5520c-14b5-47e5-9321-e5962fa9128d
 # ╟─a3922e9d-7d70-403e-ae02-14854810de2c
 # ╠═23eea7e4-3b75-4f64-a9d0-b6a86625db0a
+# ╠═ff14f217-55f4-46ec-bc31-33621102d9e3
+# ╠═89f0aadd-c8dc-41dd-ba42-1be3a4790614
 # ╠═da34599b-5a87-4e32-a90f-61cc5294a18d
 # ╠═2daeca75-78c2-4e69-be22-46d7877f3eed
 # ╟─8eff8daa-de71-4c37-abdb-e2f1199c215c
 # ╟─26c90ff4-fe3b-472d-8342-4ee8e4b0e596
 # ╟─5a58ce89-1884-4309-8828-db5e2229f395
 # ╟─f998df9e-ab7e-4212-9ea8-fb915031f6d6
+# ╠═650e0c6e-6aed-4991-a19d-9323f6a63fa7
 # ╠═93351673-6b2f-4e9d-8ea3-ea6d66d99e82
 # ╠═d24e82f4-9c57-4149-8a1f-08df047a34f1
 # ╟─5cfbc13b-cee3-436b-8925-532861aae82f
