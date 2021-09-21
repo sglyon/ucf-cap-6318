@@ -1,5 +1,5 @@
 ### A Pluto.jl notebook ###
-# v0.16.0
+# v0.16.1
 
 using Markdown
 using InteractiveUtils
@@ -34,6 +34,10 @@ md"""
 
 **Outcomes**
 
+- Represent network traffic weighted DiGraph
+- Analyze equilibrium network outcomes using the concept of Nash Equilibirum
+- Understand Braes' paradox
+- Learn about the concept of social welfare and a social planners
 
 
 **References**
