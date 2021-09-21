@@ -1,5 +1,5 @@
 ### A Pluto.jl notebook ###
-# v0.15.1
+# v0.16.0
 
 using Markdown
 using InteractiveUtils
@@ -14,7 +14,7 @@ md"""
 
 Welcome to week 4!
 
-This week we will finish start talking about Game Theory.
+This week we will start talking about Game Theory.
 
 **Reading**: We will cover concepts from chapter 6 of the textbook. Sections to focus on include 6.1-6.10
 """
