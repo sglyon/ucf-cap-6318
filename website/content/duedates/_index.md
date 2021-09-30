@@ -31,7 +31,7 @@ frequently, so check back often.
 - Assigned Date: Wednesday September 29, 2021
 - Due Date: Sunday October 10, 2021
 - GitHub Classroom links:
-  - TBA
+  - [Game Theory Practice](https://classroom.github.com/a/rF2ov6nc)
 
 ### Homework 4 (Due Date 2021-10-24)
 
