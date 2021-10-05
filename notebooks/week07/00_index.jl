@@ -23,4 +23,4 @@ We'll really lean into our Julia programming experience, so brushing up on those
 """
 
 # ╔═╡ Cell order:
-# ╟─69fca040-130d-11ec-3e98-95cda05ae86a
+# ╠═69fca040-130d-11ec-3e98-95cda05ae86a
