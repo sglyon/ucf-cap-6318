@@ -38,7 +38,7 @@ frequently, so check back often.
 - Assigned Date: Tuesday October 12, 2021
 - Due Date: Sunday October 24, 2021
 - GitHub Classroom links:
-  - TBA
+  - [ABM Practice](https://classroom.github.com/a/ifGcFhGO)
 
 ### Homework 5 (Due Date 2021-11-07)
 
