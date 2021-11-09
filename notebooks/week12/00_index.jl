@@ -1,5 +1,5 @@
 ### A Pluto.jl notebook ###
-# v0.16.1
+# v0.15.1
 
 using Markdown
 using InteractiveUtils
@@ -22,7 +22,7 @@ In this first lecture we will try to provide motivations for why we should care 
 
 We will also present the bulk of this lecture via a Jupyter notebook. The reason for this is that you should be working on your projects now and you are allowed to use either Pluto or Jupyter notebooks and I wanted to show how we can use Julia from Jupyter.
 
-You can find the jupyter notebook for today's lecture [here](https://github.com/sglyon/ucf-cap-6318/blob/Fall21/notebooks/week12/01_intro_to_blockchains.ipynb)
+You can find the jupyter notebook for today's lecture <a href="https://github.com/sglyon/ucf-cap-6318/blob/Fall21/notebooks/week12/01_intro_to_blockchains.ipynb" target="_blank">here</a>
 
 """
 
