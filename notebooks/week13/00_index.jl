@@ -20,7 +20,7 @@ We will review what we learned last week about how the Bitcoin blockchain works
 
 We'll then dive in to looking at what the second largest blockchain -- Ethereum -- brought to the table
 
-You can find the jupyter notebook for today's lecture <a href="https://github.com/sglyon/ucf-cap-6318/blob/Fall21/notebooks/week13/01_ethereum.ipynb" target="_blank">here</a>
+You can find the jupyter notebook for today's lecture <a href="https://github.com/sglyon/ucf-cap-6318/blob/Fall21/notebooks/week13/01-ethereum.ipynb" target="_blank">here</a>
 
 """
 
