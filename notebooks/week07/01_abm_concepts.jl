@@ -1,5 +1,5 @@
 ### A Pluto.jl notebook ###
-# v0.16.1
+# v0.19.9
 
 using Markdown
 using InteractiveUtils
@@ -207,18 +207,36 @@ md"""
 > Note neighbors for a particular cell are the the 8 other cells surrounding the cell of interest. Corner or edge cells have less than 8 neighbors
 """
 
+# ╔═╡ 00000000-0000-0000-0000-000000000001
+PLUTO_PROJECT_TOML_CONTENTS = """
+[deps]
+"""
+
+# ╔═╡ 00000000-0000-0000-0000-000000000002
+PLUTO_MANIFEST_TOML_CONTENTS = """
+# This file is machine-generated - editing it directly is not advised
+
+julia_version = "1.8.1"
+manifest_format = "2.0"
+project_hash = "da39a3ee5e6b4b0d3255bfef95601890afd80709"
+
+[deps]
+"""
+
 # ╔═╡ Cell order:
-# ╟─b5399892-25e6-11ec-015f-8582c58e6432
-# ╟─bfe02e2d-7a85-47ad-9a8e-ed8506c7beb0
-# ╟─2714f12f-321c-4672-8359-49132e4d0f5b
-# ╟─6991818f-eab3-4c3d-bc8d-a0984f739b3e
-# ╟─258514e7-53e0-4f29-b759-d025c6d61cf9
-# ╟─49124b12-3f88-4afe-ad78-4da8d563b2a2
-# ╟─69859737-35e0-4354-b585-174d115a48c9
-# ╟─60a4477f-1c35-4b0c-ae81-965f7e2c3bfd
-# ╟─e34bd171-8706-4107-9850-a823ed5b8906
-# ╟─1dbd7a97-41df-4ffe-805a-b6c3f9d8b9a5
-# ╟─ae06a603-fd9d-4b78-95ab-835586db9239
+# ╠═b5399892-25e6-11ec-015f-8582c58e6432
+# ╠═bfe02e2d-7a85-47ad-9a8e-ed8506c7beb0
+# ╠═2714f12f-321c-4672-8359-49132e4d0f5b
+# ╠═6991818f-eab3-4c3d-bc8d-a0984f739b3e
+# ╠═258514e7-53e0-4f29-b759-d025c6d61cf9
+# ╠═49124b12-3f88-4afe-ad78-4da8d563b2a2
+# ╠═69859737-35e0-4354-b585-174d115a48c9
+# ╠═60a4477f-1c35-4b0c-ae81-965f7e2c3bfd
+# ╠═e34bd171-8706-4107-9850-a823ed5b8906
+# ╠═1dbd7a97-41df-4ffe-805a-b6c3f9d8b9a5
+# ╠═ae06a603-fd9d-4b78-95ab-835586db9239
 # ╠═5571b5e9-6f6a-466b-8929-36468e46c927
-# ╟─6ff1ebd5-ae4b-41ca-8a9e-8b9d7d2cfc0f
+# ╠═6ff1ebd5-ae4b-41ca-8a9e-8b9d7d2cfc0f
 # ╠═06326c63-8139-4e8d-ba5f-bcc289188cf6
+# ╟─00000000-0000-0000-0000-000000000001
+# ╟─00000000-0000-0000-0000-000000000002

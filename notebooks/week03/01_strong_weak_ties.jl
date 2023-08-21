@@ -1,5 +1,5 @@
 ### A Pluto.jl notebook ###
-# v0.15.1
+# v0.19.11
 
 using Markdown
 using InteractiveUtils
@@ -579,6 +579,7 @@ PLUTO_MANIFEST_TOML_CONTENTS = """
 
 [[ArgTools]]
 uuid = "0dad84c5-d112-42e6-8d28-ef12dabb789f"
+version = "1.1.1"
 
 [[ArnoldiMethod]]
 deps = ["LinearAlgebra", "Random", "StaticArrays"]
@@ -610,6 +611,11 @@ git-tree-sha1 = "727e463cfebd0c7b999bbf3e9e7e16f254b94193"
 uuid = "34da2185-b29b-5c13-b0c7-acf172513d20"
 version = "3.34.0"
 
+[[CompilerSupportLibraries_jll]]
+deps = ["Artifacts", "Libdl"]
+uuid = "e66e0078-7015-5450-92f7-15fbd957f2ae"
+version = "0.5.2+0"
+
 [[Compose]]
 deps = ["Base64", "Colors", "DataStructures", "Dates", "IterTools", "JSON", "LinearAlgebra", "Measures", "Printf", "Random", "Requires", "Statistics", "UUIDs"]
 git-tree-sha1 = "c6461fc7c35a4bb8d00905df7adafcff1fe3a6bc"
@@ -635,8 +641,12 @@ deps = ["Random", "Serialization", "Sockets"]
 uuid = "8ba89e20-285c-5b6f-9357-94700520ee1b"
 
 [[Downloads]]
-deps = ["ArgTools", "LibCURL", "NetworkOptions"]
+deps = ["ArgTools", "FileWatching", "LibCURL", "NetworkOptions"]
 uuid = "f43a241f-c20a-4ad4-852c-f6b1247861c6"
+version = "1.6.0"
+
+[[FileWatching]]
+uuid = "7b1f6079-737a-58dc-b8bc-7a2ca5c1b5ee"
 
 [[FixedPointNumbers]]
 deps = ["Statistics"]
@@ -673,10 +683,12 @@ version = "0.21.2"
 [[LibCURL]]
 deps = ["LibCURL_jll", "MozillaCACerts_jll"]
 uuid = "b27032c2-a3e7-50c8-80cd-2d36dbcbfd21"
+version = "0.6.3"
 
 [[LibCURL_jll]]
 deps = ["Artifacts", "LibSSH2_jll", "Libdl", "MbedTLS_jll", "Zlib_jll", "nghttp2_jll"]
 uuid = "deac9b47-8bc7-5906-a0fe-35ac56dc84c0"
+version = "7.84.0+0"
 
 [[LibGit2]]
 deps = ["Base64", "NetworkOptions", "Printf", "SHA"]
@@ -685,6 +697,7 @@ uuid = "76f85450-5226-5b5a-8eaa-529ad045b433"
 [[LibSSH2_jll]]
 deps = ["Artifacts", "Libdl", "MbedTLS_jll"]
 uuid = "29816b5a-b9ab-546f-933c-edad1886dfa8"
+version = "1.10.2+0"
 
 [[Libdl]]
 uuid = "8f399da3-3557-5675-b5ff-fb832c97cbdb"
@@ -696,7 +709,7 @@ uuid = "093fc24a-ae57-5d10-9952-331d41423f4d"
 version = "1.3.5"
 
 [[LinearAlgebra]]
-deps = ["Libdl"]
+deps = ["Libdl", "libblastrampoline_jll"]
 uuid = "37e2e46d-f89d-539d-b4ee-838fcccc9c8e"
 
 [[Logging]]
@@ -715,6 +728,7 @@ uuid = "d6f4376e-aef5-505a-96c1-9c027394607a"
 [[MbedTLS_jll]]
 deps = ["Artifacts", "Libdl"]
 uuid = "c8ffd9c3-330d-5841-b78e-0817d7145fa1"
+version = "2.28.0+0"
 
 [[Measures]]
 git-tree-sha1 = "e498ddeee6f9fdb4551ce855a46f54dbd900245f"
@@ -726,9 +740,16 @@ uuid = "a63ad114-7e13-5084-954f-fe012c677804"
 
 [[MozillaCACerts_jll]]
 uuid = "14a3606d-f60d-562e-9121-12d972cd8159"
+version = "2022.2.1"
 
 [[NetworkOptions]]
 uuid = "ca575930-c2e3-43a9-ace4-1e988b2c1908"
+version = "1.2.0"
+
+[[OpenBLAS_jll]]
+deps = ["Artifacts", "CompilerSupportLibraries_jll", "Libdl"]
+uuid = "4536629a-c528-5b80-bd46-f80d51c5b363"
+version = "0.3.20+0"
 
 [[OrderedCollections]]
 git-tree-sha1 = "85f8e6578bf1f9ee0d11e7bb1b1456435479d47c"
@@ -744,6 +765,7 @@ version = "2.0.3"
 [[Pkg]]
 deps = ["Artifacts", "Dates", "Downloads", "LibGit2", "Libdl", "Logging", "Markdown", "Printf", "REPL", "Random", "SHA", "Serialization", "TOML", "Tar", "UUIDs", "p7zip_jll"]
 uuid = "44cfe95a-1eb2-52ea-b672-e2afdf69b78f"
+version = "1.8.0"
 
 [[PlutoUI]]
 deps = ["Base64", "Dates", "InteractiveUtils", "JSON", "Logging", "Markdown", "Random", "Reexport", "Suppressor"]
@@ -760,7 +782,7 @@ deps = ["InteractiveUtils", "Markdown", "Sockets", "Unicode"]
 uuid = "3fa0cd96-eef1-5676-8a61-b3b8758bbffb"
 
 [[Random]]
-deps = ["Serialization"]
+deps = ["SHA", "Serialization"]
 uuid = "9a3f8284-a2c9-5f02-9a11-845980a1fd5c"
 
 [[Reexport]]
@@ -776,6 +798,7 @@ version = "1.1.3"
 
 [[SHA]]
 uuid = "ea8e919c-243c-51af-8825-aaa63cd721ce"
+version = "0.7.0"
 
 [[SNAPDatasets]]
 deps = ["LightGraphs", "Test"]
@@ -821,10 +844,12 @@ version = "0.2.0"
 [[TOML]]
 deps = ["Dates"]
 uuid = "fa267f1f-6049-4f14-aa54-33bafae1ed76"
+version = "1.0.0"
 
 [[Tar]]
 deps = ["ArgTools", "SHA"]
 uuid = "a4e569a6-e804-4fa4-b0f3-eef7a1d5b13e"
+version = "1.10.0"
 
 [[Test]]
 deps = ["InteractiveUtils", "Logging", "Random", "Serialization"]
@@ -840,85 +865,93 @@ uuid = "4ec0a83e-493e-50e2-b9ac-8f72acf5a8f5"
 [[Zlib_jll]]
 deps = ["Libdl"]
 uuid = "83775a58-1f1d-513f-b197-d71354ab007a"
+version = "1.2.12+3"
+
+[[libblastrampoline_jll]]
+deps = ["Artifacts", "Libdl", "OpenBLAS_jll"]
+uuid = "8e850b90-86db-534c-a0d3-1478176c7d93"
+version = "5.1.1+0"
 
 [[nghttp2_jll]]
 deps = ["Artifacts", "Libdl"]
 uuid = "8e850ede-7688-5339-a07c-302acd2aaf8d"
+version = "1.48.0+0"
 
 [[p7zip_jll]]
 deps = ["Artifacts", "Libdl"]
 uuid = "3f19e933-33d8-53b3-aaab-bd5110c3b7a0"
+version = "17.4.0+0"
 """
 
 # ╔═╡ Cell order:
 # ╟─f800da3e-2ffd-40a5-bfaf-33d32688e8af
-# ╟─5cdc2c64-0a61-11ec-2727-7513e274589e
-# ╟─e8898c44-0864-4d64-99a4-96c57905c46f
-# ╟─382fcc1a-0df5-48b7-80ab-cbc5fece0d74
-# ╟─efd45a43-de4d-4d4c-b575-dfcfb06a02c7
+# ╠═5cdc2c64-0a61-11ec-2727-7513e274589e
+# ╠═e8898c44-0864-4d64-99a4-96c57905c46f
+# ╠═382fcc1a-0df5-48b7-80ab-cbc5fece0d74
+# ╠═efd45a43-de4d-4d4c-b575-dfcfb06a02c7
 # ╠═521c893c-116d-4912-a163-716b28e3773e
 # ╠═8cce7c54-4263-41d6-b1bb-49b7081a5311
 # ╠═9a704d0f-b05d-4cf9-a31d-38a4c5077080
 # ╠═616310c0-266f-4534-ace2-e586d5c20efa
-# ╟─7bacdeff-97e7-4902-aa4e-f1698cba1315
-# ╟─eb8d0345-2a5c-470a-9f70-0703aa1abd4f
+# ╠═7bacdeff-97e7-4902-aa4e-f1698cba1315
+# ╠═eb8d0345-2a5c-470a-9f70-0703aa1abd4f
 # ╠═1808620b-4ac3-4ae7-b442-ce72372ecfcd
-# ╟─948ca9e2-b7e6-438f-8f3f-e1b62cf82e60
-# ╟─a59ed1e0-248e-40b6-92a5-287d959e377c
+# ╠═948ca9e2-b7e6-438f-8f3f-e1b62cf82e60
+# ╠═a59ed1e0-248e-40b6-92a5-287d959e377c
 # ╠═759b1bcc-872f-4837-a52d-ed247d82bb43
 # ╠═a265f78e-cdfb-4b48-a228-328787ba204b
 # ╟─b2461922-d84d-418f-9349-2da2b1832cac
 # ╠═73431460-7fca-46b3-8a94-c99978943727
 # ╠═d37bf539-ba4a-4bad-9b49-529c31752878
 # ╠═691be200-3798-4c0a-b89b-fdf3732597b4
-# ╟─18504d01-4b75-40bf-94dd-2041ef650c51
+# ╠═18504d01-4b75-40bf-94dd-2041ef650c51
 # ╠═b00f160a-2a85-4488-8d08-316f761bc968
 # ╠═954fb52b-9079-4eea-a951-f492821bd161
 # ╟─45111ec6-6370-4274-af97-9dd949139f70
 # ╠═8a114aa3-d928-46be-9705-f004fcabc678
-# ╟─e8155e31-6d22-49b9-95a1-e4c0cfe5ad62
+# ╠═e8155e31-6d22-49b9-95a1-e4c0cfe5ad62
 # ╠═5c04a8df-6325-42b6-bb4d-6e39b27b0d11
 # ╠═3f3de0c2-5172-40e9-a363-1a3f0cb65f8a
-# ╟─44cc5acc-fdc9-4a11-b406-e917c75e72d4
+# ╠═44cc5acc-fdc9-4a11-b406-e917c75e72d4
 # ╠═ca9c4ec8-e5b5-4e57-a136-45ef34ee7213
-# ╟─c7bbe09b-2654-4d3f-877e-40ebfc060a26
+# ╠═c7bbe09b-2654-4d3f-877e-40ebfc060a26
 # ╠═2888aac7-2228-44a6-a8b4-2a7d468fac67
-# ╟─2821ed48-705b-4f8f-b1fc-5329575efce5
-# ╟─207d4fa0-92d1-4c73-8375-e18dc99c3f2f
+# ╠═2821ed48-705b-4f8f-b1fc-5329575efce5
+# ╠═207d4fa0-92d1-4c73-8375-e18dc99c3f2f
 # ╠═c3419b5d-143c-4a8c-81c7-ac2f0a27a13d
 # ╟─f5489fc9-01c1-4131-b343-53dfc82829d5
-# ╟─f696c8e9-9f2e-464e-871c-0f3348f7adba
+# ╠═f696c8e9-9f2e-464e-871c-0f3348f7adba
 # ╠═7d08dfae-d619-4b0e-9844-8afd59e739bd
 # ╟─22e413e0-5185-44db-9a4b-d4e24ed2b3c0
-# ╟─6632b0a1-42fb-4b63-950e-9e840484f68c
+# ╠═6632b0a1-42fb-4b63-950e-9e840484f68c
 # ╠═9b34b70b-ead8-40ef-9a16-6831a7a92141
 # ╠═58052c76-454c-41ea-82c6-0701ff4c612a
-# ╟─99a41830-d5f1-4b33-94b5-58b8652e000b
+# ╠═99a41830-d5f1-4b33-94b5-58b8652e000b
 # ╠═493438ba-d55b-4fa0-b359-b7b50ac9e4aa
 # ╠═26dda823-b3eb-4dda-acd7-6d49ff4cfb35
 # ╠═fa4c0109-9248-44c7-867b-b3832bad6e1d
-# ╟─a8bf9347-c1f9-4bcc-bcbf-b6e755ba948a
-# ╟─3a7fed46-c04c-4321-9832-3be119cf8585
-# ╟─c4d6a245-7e80-4278-9cdf-7b826ca50125
-# ╟─c180738b-4fea-42dc-8db8-c0598ec0f208
-# ╟─0b9a9e9d-c626-49c9-9197-bc293ef107be
-# ╟─00f454b2-45ce-4b90-8c24-9918810be484
-# ╟─855609da-010f-45fe-8f03-79d100abcf91
-# ╟─1eeba9e0-3fd2-48d1-a09f-0e020f926187
+# ╠═a8bf9347-c1f9-4bcc-bcbf-b6e755ba948a
+# ╠═3a7fed46-c04c-4321-9832-3be119cf8585
+# ╠═c4d6a245-7e80-4278-9cdf-7b826ca50125
+# ╠═c180738b-4fea-42dc-8db8-c0598ec0f208
+# ╠═0b9a9e9d-c626-49c9-9197-bc293ef107be
+# ╠═00f454b2-45ce-4b90-8c24-9918810be484
+# ╠═855609da-010f-45fe-8f03-79d100abcf91
+# ╠═1eeba9e0-3fd2-48d1-a09f-0e020f926187
 # ╠═1b92e4d5-3aca-439c-af11-4f534244844c
-# ╟─e25cf15c-1cba-44e3-8c81-07f593388857
-# ╟─4064fc5f-9128-4f26-81ea-d8d9240f7819
+# ╠═e25cf15c-1cba-44e3-8c81-07f593388857
+# ╠═4064fc5f-9128-4f26-81ea-d8d9240f7819
 # ╠═6727e617-d550-4b16-8607-199c523137c6
 # ╠═6264dbf1-2048-4b6d-8936-859c792d6ff1
-# ╟─64adb743-803d-4f54-b2b2-b762bc5bbf43
-# ╟─f5b4404c-cc0b-470d-b8f3-a9310cb16682
-# ╟─98273b08-d9f8-47a7-8641-d10a1b227a36
+# ╠═64adb743-803d-4f54-b2b2-b762bc5bbf43
+# ╠═f5b4404c-cc0b-470d-b8f3-a9310cb16682
+# ╠═98273b08-d9f8-47a7-8641-d10a1b227a36
 # ╠═90524705-27da-4146-8324-af44d572d698
-# ╟─472375c2-3ae0-4a04-9ea1-324dc013393e
-# ╟─be2e064a-7538-46c5-9202-20dfc004bf4b
-# ╟─6cce86e2-cbde-4a07-9db6-de7dd6b4e10e
+# ╠═472375c2-3ae0-4a04-9ea1-324dc013393e
+# ╠═be2e064a-7538-46c5-9202-20dfc004bf4b
+# ╠═6cce86e2-cbde-4a07-9db6-de7dd6b4e10e
 # ╟─6ae7b62e-0162-4354-868e-feb96a5df265
 # ╠═7c08cce9-c194-465e-8934-055f2f6f84da
-# ╟─ed266bdc-37ec-4c21-8698-cc9283db0aca
+# ╠═ed266bdc-37ec-4c21-8698-cc9283db0aca
 # ╟─00000000-0000-0000-0000-000000000001
 # ╟─00000000-0000-0000-0000-000000000002

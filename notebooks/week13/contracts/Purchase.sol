@@ -2,12 +2,17 @@
 pragma solidity >=0.4.22;
 
 contract Purchase {
-    uint public value;
+    uint256 public price;
     address payable public seller;
     address payable public buyer;
 
-    enum State { Created, Locked, Released, Inactive }
-    // The state variable has a default value of the first member, `State.created`
+    enum State {
+        Created, // 0
+        Locked, // 1
+        Released, // 2
+        Inactive // 3
+    }
+    // The state variable has a default price of the first member, `State.created`
     State public state;
 
     modifier condition(bool _condition) {
@@ -16,65 +21,53 @@ contract Purchase {
     }
 
     modifier onlyBuyer() {
-        require(
-            msg.sender == buyer,
-            "Only buyer can call this."
-        );
+        // @assert
+        require(msg.sender == buyer, "Only buyer can call this.");
         _;
     }
 
     modifier onlySeller() {
-        require(
-            msg.sender == seller,
-            "Only seller can call this."
-        );
+        require(msg.sender == seller, "Only seller can call this.");
         _;
     }
 
     modifier inState(State _state) {
-        require(
-            state == _state,
-            "Invalid state."
-        );
+        require(state == _state, "Invalid state.");
         _;
     }
 
     event Aborted();
     event PurchaseConfirmed();
     event ItemReceived();
-    event SellerPaid();
+    event SellerPaid(uint256 value);
 
-    // Ensure that `msg.value` is an even number.
+    // Ensure that `msg.price` is an even number.
     // Division will truncate if it is an odd number.
     // Check via multiplication that it wasn't an odd number.
     constructor() payable {
         buyer = payable(msg.sender);
-        value = msg.value / 2;
-        require((2 * value) == msg.value, "Value has to be even.");
+        price = msg.value / 2;
+        require((2 * price) == msg.value, "Value has to be even.");
     }
 
     /// Abort the purchase and reclaim the ether.
     /// Can only be called by the seller before
     /// the contract is locked.
-    function abort()
-        public
-        onlyBuyer
-        inState(State.Created)
-    {
+    function abort() public onlyBuyer inState(State.Created) {
         emit Aborted();
         state = State.Inactive;
         buyer.transfer(address(this).balance);
     }
 
     /// Confirm the purchase as buyer.
-    /// Transaction has to include `2 * value` ether.
+    /// Transaction has to include `2 * price` ether.
     /// The ether will be locked until confirmReceived
     /// is called.
     function confirmPurchase()
         public
-        inState(State.Created)
-        condition(msg.value == (2 * value))
         payable
+        inState(State.Created)
+        condition(msg.value == (2 * price))
     {
         emit PurchaseConfirmed();
         seller = payable(msg.sender);
@@ -83,27 +76,20 @@ contract Purchase {
 
     /// Confirm that you (the buyer) received the item.
     /// This will release the locked ether.
-    function confirmReceived()
-        public
-        onlyBuyer
-        inState(State.Locked)
-    {
+    function confirmReceived() public onlyBuyer inState(State.Locked) {
         emit ItemReceived();
         state = State.Released;
 
-        buyer.transfer(value);
+        buyer.transfer(price);
     }
 
     /// This function refunds the seller, i.e.
     /// pays back the locked funds of the seller.
-    function finalizePurchase()
-        public
-        onlySeller
-        inState(State.Released)
-    {
-        emit SellerPaid();
+    function finalizePurchase() public onlySeller inState(State.Released) {
         state = State.Inactive;
 
-        seller.transfer(3 * value);
+        seller.transfer(3 * price);
+
+        emit SellerPaid(3 * price);
     }
 }
